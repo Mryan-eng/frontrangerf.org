@@ -7,13 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#000;--s1:#080d12;--s2:#0c1218;--b1:#162030;--b2:#1e2e44;--navy:#1a3c6e;--blue:#2a6cc4;--acc:#5b9cf6;--acc2:#88beff;--txt:#ddeeff;--txt2:#6a90b8;--txt3:#2e4860;--mono:'Space Mono',monospace;--cond:'Barlow Condensed',sans-serif}
+:root{--bg:#000;--s1:#080d12;--s2:#0c1218;--b1:#162030;--b2:#1e2e44;--navy:#1a3c6e;--blue:#2a6cc4;--acc:#5b9cf6;--acc2:#88beff;--txt:#eef4ff;--txt2:#8aaccc;--txt3:#2e4860;--mono:'Space Mono',monospace;--cond:'Barlow Condensed',sans-serif}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:var(--cond);overflow-x:hidden;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(22,32,48,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(22,32,48,.55) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
 .topglow{position:fixed;top:0;left:0;right:0;height:320px;background:linear-gradient(180deg,rgba(42,108,196,.09) 0%,transparent 100%);pointer-events:none;z-index:0}
-
-/* NAV */
+.maxwell-bg{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:0;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.maxwell-bg svg{opacity:.04;width:min(900px,95vw)}
+#sineCanvas{position:fixed;bottom:0;left:0;right:0;height:120px;pointer-events:none;z-index:0;opacity:.2}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);border-bottom:1px solid var(--b2);height:52px;display:flex;align-items:stretch}
 .nav-brand{display:flex;align-items:center;padding:0 0 0 40px;border-right:1px solid var(--b1)}
 .nav-logo{font-family:var(--cond);font-size:13px;font-weight:700;color:#fff;letter-spacing:.2em;text-decoration:none;text-transform:uppercase;padding-right:24px}
@@ -21,46 +22,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);b
 .nav-links{display:flex;list-style:none;margin-left:auto}
 .nav-links a{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt2);text-decoration:none;letter-spacing:.18em;text-transform:uppercase;padding:0 22px;height:52px;display:flex;align-items:center;border-left:1px solid var(--b1);transition:all .15s}
 .nav-links a:hover{color:var(--acc2);background:rgba(42,108,196,.08)}
-
-/* HERO */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:110px 64px 80px;max-width:1360px;margin:0 auto}
-
 .eyebrow{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.28em;text-transform:uppercase;margin-bottom:44px;display:flex;align-items:center;gap:20px;opacity:0;animation:up .5s .1s ease forwards}
 .eyebrow::before{content:'';width:36px;height:1px;background:var(--b2)}
 .eyebrow::after{content:'';flex:1;height:1px;background:var(--b2)}
-
 h1{font-family:var(--cond);font-size:clamp(60px,10vw,130px);font-weight:800;line-height:.88;letter-spacing:.01em;text-transform:uppercase;margin-bottom:22px;opacity:0;animation:up .5s .2s ease forwards}
 h1 .d{color:var(--txt3)}
 h1 .b{color:var(--acc)}
-
 .rule{width:64px;height:3px;background:var(--blue);margin-bottom:28px;opacity:0;animation:up .5s .25s ease forwards}
-
 .tagline{font-family:var(--cond);font-size:clamp(15px,2vw,21px);font-weight:400;color:var(--txt2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:36px;line-height:1.6;opacity:0;animation:up .5s .3s ease forwards}
-
 .desc{font-family:var(--mono);font-size:11px;color:var(--txt2);line-height:2;max-width:500px;margin-bottom:52px;opacity:0;animation:up .5s .35s ease forwards}
-
-/* STATS */
-.stats{display:flex;border:1px solid var(--b2);max-width:700px;margin-bottom:40px;opacity:0;animation:up .5s .4s ease forwards}
+.stats{display:flex;border:1px solid var(--b2);max-width:520px;margin-bottom:40px;opacity:0;animation:up .5s .4s ease forwards}
 .st{flex:1;padding:16px 24px;border-right:1px solid var(--b1)}
 .st:last-child{border-right:none}
 .st-l{font-family:var(--mono);font-size:8px;color:var(--txt3);text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
 .st-v{font-family:var(--cond);font-size:22px;font-weight:700;color:var(--txt);letter-spacing:.02em}
 .st-v.b{color:var(--acc)}
-
 .pulse-row{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:9px;color:var(--acc);letter-spacing:.18em;text-transform:uppercase;opacity:0;animation:up .5s .45s ease forwards}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);position:relative;flex-shrink:0}
 .dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--acc);animation:ring 2.4s ease-out infinite}
 @keyframes ring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
-
-/* SECTIONS */
 .section{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:68px 64px}
 .shdr{display:flex;align-items:center;gap:14px;margin-bottom:8px}
 .sn{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.14em}
 .sr{flex:1;height:1px;background:var(--b2)}
 .stag{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.12em;text-transform:uppercase}
 .stitle{font-family:var(--cond);font-size:34px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.06em;margin-bottom:28px}
-
-/* 3-COL HIGHLIGHT CARDS */
 .hgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b2);border:1px solid var(--b2)}
 .hcard{background:var(--s1);padding:26px 28px;position:relative;overflow:hidden;transition:background .18s;border-top:2px solid var(--b2);text-decoration:none;display:block}
 .hcard:hover{background:var(--s2)}
@@ -74,12 +61,9 @@ h1 .b{color:var(--acc)}
 .hc-freq{font-family:var(--mono);font-size:9px;color:var(--acc);margin-bottom:12px}
 .hc-desc{font-family:var(--mono);font-size:10px;color:var(--txt2);line-height:1.75}
 .hc-n{position:absolute;bottom:12px;right:16px;font-family:var(--cond);font-size:54px;font-weight:800;color:var(--b1);line-height:1;pointer-events:none}
-
 .view-all{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;color:var(--txt2);text-decoration:none;letter-spacing:.14em;text-transform:uppercase;margin-top:20px;padding-bottom:8px;border-bottom:1px solid var(--b2);transition:all .15s}
 .view-all:hover{color:var(--acc);border-bottom-color:var(--acc)}
-.view-all::after{content:'→'}
-
-/* PUB LIST */
+.view-all::after{content:'->'}
 .publist{border:1px solid var(--b2)}
 .pubrow{display:grid;grid-template-columns:52px 96px 1fr auto;align-items:stretch;border-bottom:1px solid var(--b1);text-decoration:none;transition:background .15s}
 .pubrow:last-child{border-bottom:none}
@@ -94,45 +78,37 @@ h1 .b{color:var(--acc)}
 .pbadge{font-family:var(--mono);font-size:8px;padding:4px 10px;border:1px solid;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
 .pbadge.prep{border-color:var(--acc);color:var(--acc)}
 .pbadge.done{border-color:var(--txt3);color:var(--txt3)}
-
-/* NAV CARDS — quick links to all sections */
 .navcards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--b2);border:1px solid var(--b2)}
 .navcard{background:var(--s1);padding:24px 28px;text-decoration:none;transition:background .18s;display:block}
 .navcard:hover{background:var(--s2)}
-.navcard:hover .nc-arrow{color:var(--acc2)}
 .nc-label{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
 .nc-title{font-family:var(--cond);font-size:20px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
 .nc-desc{font-family:var(--mono);font-size:10px;color:var(--txt2);line-height:1.7;margin-bottom:14px}
-.nc-arrow{font-family:var(--mono);font-size:10px;color:var(--acc);transition:color .15s}
-
-/* FOOTER */
+.nc-arrow{font-family:var(--mono);font-size:10px;color:var(--acc)}
 .footer{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:22px 64px;border-top:1px solid var(--b2);display:flex;justify-content:space-between;align-items:center}
 .fl{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt3);letter-spacing:.14em;text-transform:uppercase;line-height:1.8}
 .fr{font-family:var(--mono);font-size:9px;color:var(--txt3);text-align:right;line-height:1.8}
 .facc{color:var(--acc)}
-
 .div{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:0 64px}
 .div hr{border:none;border-top:1px solid var(--b1)}
-
 @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-@media(max-width:960px){
-  .nav-brand{padding:0 0 0 16px}
-  .nav-links a{padding:0 14px}
-  .hero{padding:90px 20px 60px}
-  .section{padding:52px 20px}
-  .hgrid{grid-template-columns:1fr}
-  .navcards{grid-template-columns:1fr 1fr}
-  .stats{flex-wrap:wrap}
-  .pubrow{grid-template-columns:52px 1fr auto}
-  .cell.id{display:none}
-  .footer{padding:20px;flex-direction:column;gap:10px;text-align:center}
-  .div{padding:0 20px}
-}
+@media(max-width:960px){.nav-brand{padding:0 0 0 16px}.nav-links a{padding:0 12px;font-size:10px}.hero{padding:90px 20px 60px}.section{padding:52px 20px}.hgrid{grid-template-columns:1fr}.navcards{grid-template-columns:1fr 1fr}.stats{flex-wrap:wrap}.pubrow{grid-template-columns:52px 1fr auto}.cell.id{display:none}.footer{padding:20px;flex-direction:column;gap:10px;text-align:center}.div{padding:0 20px}}
 </style>
 </head>
 <body>
 <div class="topglow"></div>
+
+<div class="maxwell-bg">
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <text x="60" y="100" font-family="Georgia,serif" font-size="40" fill="#5b9cf6" font-style="italic">&#x2207; &#xD7; E = &#x2212;&#x2202;B/&#x2202;t</text>
+  <text x="60" y="180" font-family="Georgia,serif" font-size="40" fill="#5b9cf6" font-style="italic">&#x2207; &#xD7; B = &#x3BC;&#x2080;&#x3B5;&#x2080; &#x2202;E/&#x2202;t</text>
+  <text x="60" y="260" font-family="Georgia,serif" font-size="40" fill="#5b9cf6" font-style="italic">&#x2207; &#xB7; E = 0</text>
+  <text x="60" y="340" font-family="Georgia,serif" font-size="40" fill="#5b9cf6" font-style="italic">&#x2207; &#xB7; B = 0</text>
+  <text x="60" y="440" font-family="Georgia,serif" font-size="30" fill="#5b9cf6" font-style="italic">&#x2207;&#xB2;E = (1/c&#xB2;) &#x2202;&#xB2;E/&#x2202;t&#xB2;</text>
+</svg>
+</div>
+
+<canvas id="sineCanvas"></canvas>
 
 <nav>
   <div class="nav-brand">
@@ -148,53 +124,29 @@ h1 .b{color:var(--acc)}
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="eyebrow">Front Range RF Research Initiative &mdash; Colorado Springs &mdash; Est. 2025</div>
-
-  <h1>
-    <span class="d">Front</span><br>
-    <span class="b">Range</span><br>
-    <span class="d">RF</span>
-  </h1>
-
+  <div class="eyebrow">Front Range RF Research Initiative -- Colorado Springs -- Est. 2025</div>
+  <h1><span class="d">Front</span><br><span class="b">Range</span><br><span class="d">RF</span></h1>
   <div class="rule"></div>
-
-  <div class="tagline">
-    Independent RF Research &mdash; Colorado Front Range<br>
-    Terrain Propagation &mdash; Antenna Theory &mdash; Signal Analysis
-  </div>
-
-  <p class="desc">
-    The Front Range presents unique RF propagation challenges:<br>
-    knife-edge diffraction over mountain terrain, asymmetric<br>
-    coverage geometry, and a hard terrain horizon to the west.<br>
-    FRRRI measures, models, and documents these phenomena.
-  </p>
-
+  <div class="tagline">Independent RF Research -- Colorado Front Range<br>Terrain Propagation -- Antenna Theory -- Signal Analysis</div>
+  <p class="desc">The Front Range creates real RF challenges: knife-edge diffraction over mountain terrain, asymmetric coverage geometry, and a hard terrain horizon to the west. FRRRI measures, models, and documents these phenomena.</p>
   <div class="stats">
     <div class="st"><div class="st-l">Callsign</div><div class="st-v b">AF0FO</div></div>
-    <div class="st"><div class="st-l">Class</div><div class="st-v">Extra</div></div>
+    <div class="st"><div class="st-l">License</div><div class="st-v">Extra</div></div>
     <div class="st"><div class="st-l">Reports</div><div class="st-v">2</div></div>
-    <div class="st"><div class="st-l">Primary</div><div class="st-v">1090 MHz</div></div>
     <div class="st"><div class="st-l">Founded</div><div class="st-v">2025</div></div>
   </div>
-
-  <div class="pulse-row">
-    <div class="dot"></div>
-    ADS-B Station &mdash; Installation Summer 2026
-  </div>
+  <div class="pulse-row"><div class="dot"></div>ADS-B Station -- Installation Summer 2026</div>
 </section>
 
 <div class="div"><hr></div>
 
-<!-- RESEARCH HIGHLIGHTS -->
 <section class="section">
   <div class="shdr"><span class="sn">01</span><div class="sr"></div><span class="stag">Highlights</span></div>
   <div class="stitle">Research</div>
   <div class="hgrid">
     <a href="research.html" class="hcard active">
-      <div class="hc-st live">&#9679; Active &mdash; Summer 2026</div>
+      <div class="hc-st live">Active -- Summer 2026</div>
       <div class="hc-id">FRRRI-STATION-001</div>
       <div class="hc-title">Dual-Band ADS-B Receive Station</div>
       <div class="hc-freq">978 / 1090 MHz</div>
@@ -202,19 +154,19 @@ h1 .b{color:var(--acc)}
       <div class="hc-n">01</div>
     </a>
     <a href="research.html" class="hcard draft">
-      <div class="hc-st">&#9675; Draft &mdash; QEX Pending</div>
+      <div class="hc-st">Draft -- QEX Pending</div>
       <div class="hc-id">FR-2026-05</div>
       <div class="hc-title">Co-siting Analysis</div>
-      <div class="hc-freq">Maxwell &rarr; Far-Field Integral</div>
-      <p class="hc-desc">Analytical co-siting study. Elevation patterns from Maxwell's equations. FlightAware collinear reverse-engineered as N=4 elements. FM band as binding isolation constraint.</p>
+      <div class="hc-freq">Maxwell to Far-Field Integral</div>
+      <p class="hc-desc">Analytical co-siting study. Elevation patterns from Maxwell's equations. FlightAware collinear reverse-engineered as N=4 elements. FM band is the binding isolation constraint.</p>
       <div class="hc-n">02</div>
     </a>
     <a href="research.html" class="hcard done">
-      <div class="hc-st">&#9670; Complete &mdash; FR-2026-01</div>
+      <div class="hc-st">Complete -- FR-2026-01</div>
       <div class="hc-id">THE 88-MILE CHALLENGE</div>
-      <div class="hc-title">VHF Propagation &mdash; Rampart Range</div>
-      <div class="hc-freq">99.5 MHz &mdash; 88.33 Miles</div>
-      <p class="hc-desc">Inaugural FRRRI field study. Lookout Mountain to Pikes Peak Int'l Raceway across a 7,000–9,000 ft terrain obstacle. Path loss exceeding 110 dB. Reviewed by Dr. Paul Wilkinson, SIEEE.</p>
+      <div class="hc-title">VHF Propagation -- Rampart Range</div>
+      <div class="hc-freq">99.5 MHz -- 88.33 Miles</div>
+      <p class="hc-desc">Inaugural FRRRI field study. Lookout Mountain to Pikes Peak Int'l Raceway across a 7,000 to 9,000 ft terrain obstacle. Path loss exceeding 110 dB. Reviewed by Dr. Paul Wilkinson, SIEEE.</p>
       <div class="hc-n">03</div>
     </a>
   </div>
@@ -223,7 +175,6 @@ h1 .b{color:var(--acc)}
 
 <div class="div"><hr></div>
 
-<!-- PUBLICATIONS -->
 <section class="section">
   <div class="shdr"><span class="sn">02</span><div class="sr"></div><span class="stag">Technical Reports</span></div>
   <div class="stitle">Publications</div>
@@ -233,7 +184,7 @@ h1 .b{color:var(--acc)}
       <div class="cell id">FR-2026-05</div>
       <div class="cell body">
         <div class="pt">Co-siting Analysis of a Dual-Band ADS-B Receive Station</div>
-        <div class="pv">FRRRI Technical Report &mdash; In preparation for ARRL QEX</div>
+        <div class="pv">FRRRI Technical Report -- In preparation for ARRL QEX</div>
       </div>
       <div class="cell badge"><span class="pbadge prep">In Prep</span></div>
     </a>
@@ -241,8 +192,8 @@ h1 .b{color:var(--acc)}
       <div class="cell yr">2026</div>
       <div class="cell id">FR-2026-01</div>
       <div class="cell body">
-        <div class="pt">Terrestrial Analog Modeling of VHF Propagation: Austin Bluffs and Martian Surface Environments</div>
-        <div class="pv">FRRRI Technical Report &mdash; frontrangerf.org</div>
+        <div class="pt">Terrestrial Analog Modeling of VHF Propagation</div>
+        <div class="pv">FRRRI Technical Report -- frontrangerf.org</div>
       </div>
       <div class="cell badge"><span class="pbadge done">Published</span></div>
     </a>
@@ -252,34 +203,33 @@ h1 .b{color:var(--acc)}
 
 <div class="div"><hr></div>
 
-<!-- SITE NAV CARDS -->
 <section class="section">
   <div class="shdr"><span class="sn">03</span><div class="sr"></div><span class="stag">Site</span></div>
   <div class="stitle">Explore</div>
   <div class="navcards">
     <a href="research.html" class="navcard">
-      <div class="nc-label">01 &mdash; Research</div>
+      <div class="nc-label">01 -- Research</div>
       <div class="nc-title">Formal Studies</div>
-      <p class="nc-desc">FRRRI research projects, field studies, and analytical modeling. Active, complete, and planned.</p>
-      <div class="nc-arrow">View research &rarr;</div>
+      <p class="nc-desc">FRRRI research projects, field studies, and analytical modeling.</p>
+      <div class="nc-arrow">View research -></div>
     </a>
     <a href="publications.html" class="navcard">
-      <div class="nc-label">02 &mdash; Publications</div>
+      <div class="nc-label">02 -- Publications</div>
       <div class="nc-title">Technical Reports</div>
-      <p class="nc-desc">Published and in-preparation FRRRI technical reports. MATLAB code open source under CC BY 4.0.</p>
-      <div class="nc-arrow">View publications &rarr;</div>
+      <p class="nc-desc">Published and in-preparation FRRRI reports. MATLAB code on GitHub.</p>
+      <div class="nc-arrow">View publications -></div>
     </a>
     <a href="projects.html" class="navcard">
-      <div class="nc-label">03 &mdash; Personal Projects</div>
-      <div class="nc-title">Builds &amp; Experiments</div>
-      <p class="nc-desc">Hardware builds, software projects, and RF experiments outside of formal research. Full equipment inventory.</p>
-      <div class="nc-arrow">View projects &rarr;</div>
+      <div class="nc-label">03 -- Personal Projects</div>
+      <div class="nc-title">Builds and Experiments</div>
+      <p class="nc-desc">Hardware builds, software projects, and RF experiments. Full equipment list.</p>
+      <div class="nc-arrow">View projects -></div>
     </a>
     <a href="portfolio.html" class="navcard">
-      <div class="nc-label">04 &mdash; Portfolio</div>
-      <div class="nc-title">Work &amp; Background</div>
-      <p class="nc-desc">What I've built, credentials, and where I'm headed. One destination for anyone checking out FRRRI.</p>
-      <div class="nc-arrow">View portfolio &rarr;</div>
+      <div class="nc-label">04 -- Portfolio</div>
+      <div class="nc-title">Work and Background</div>
+      <p class="nc-desc">What I've built, credentials, and who I am.</p>
+      <div class="nc-arrow">View portfolio -></div>
     </a>
   </div>
 </section>
@@ -287,9 +237,32 @@ h1 .b{color:var(--acc)}
 <div class="div"><hr></div>
 
 <footer class="footer">
-  <div class="fl">Front Range RF Research Initiative<br><span class="facc">AF0FO</span> &mdash; Colorado Springs, CO</div>
-  <div class="fr">Est. 2025 &mdash; All MATLAB code CC BY 4.0<br>AIAA &middot; IEEE &middot; ARRL</div>
+  <div class="fl">Front Range RF Research Initiative<br><span class="facc">AF0FO</span> -- Colorado Springs, CO</div>
+  <div class="fr">Est. 2025 -- All MATLAB code CC BY 4.0<br>AIAA -- IEEE -- ARRL</div>
 </footer>
 
+<script>
+const canvas = document.getElementById('sineCanvas');
+const ctx = canvas.getContext('2d');
+let t = 0;
+function resize(){canvas.width=window.innerWidth;canvas.height=120;}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.beginPath();ctx.strokeStyle='#5b9cf6';ctx.lineWidth=1.5;
+  for(let x=0;x<canvas.width;x++){
+    const y=60+Math.sin((x*0.012)+t)*22+Math.sin((x*0.024)+t*1.3)*10;
+    x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  ctx.beginPath();ctx.strokeStyle='#2a6cc4';ctx.lineWidth=1;
+  for(let x=0;x<canvas.width;x++){
+    const y=60+Math.sin((x*0.008)+t*0.7+1)*16+Math.sin((x*0.018)+t)*8;
+    x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  t+=0.012;requestAnimationFrame(draw);
+}
+resize();window.addEventListener('resize',resize);draw();
+</script>
 </body>
 </html>
