@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personal Projects — Front Range RF</title>
+<title>Personal Projects -- Front Range RF</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#000;--s1:#080d12;--s2:#0c1218;--b1:#162030;--b2:#1e2e44;--navy:#1a3c6e;--blue:#2a6cc4;--acc:#5b9cf6;--acc2:#88beff;--txt:#ddeeff;--txt2:#6a90b8;--txt3:#2e4860;--mono:'Space Mono',monospace;--cond:'Barlow Condensed',sans-serif}
+:root{--bg:#000;--s1:#080d12;--s2:#0c1218;--b1:#162030;--b2:#1e2e44;--navy:#1a3c6e;--blue:#2a6cc4;--acc:#5b9cf6;--acc2:#88beff;--txt:#eef4ff;--txt2:#8aaccc;--txt3:#2e4860;--mono:'Space Mono',monospace;--cond:'Barlow Condensed',sans-serif}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:var(--cond);overflow-x:hidden;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(22,32,48,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(22,32,48,.55) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
@@ -34,8 +34,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);b
 .stag{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.12em;text-transform:uppercase}
 .stitle{font-family:var(--cond);font-size:28px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.06em;margin-bottom:24px}
 .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--b2);border:1px solid var(--b2)}
-.pcard{background:var(--s1);padding:28px 32px;position:relative;overflow:hidden;transition:background .18s;border-top:3px solid var(--b2)}
+.pcard{background:var(--s1);padding:28px 32px;position:relative;overflow:hidden;transition:background .18s;border-top:2px solid var(--b2)}
 .pcard:hover{background:var(--s2)}
+.pcard.featured{border-top-color:var(--acc);grid-column:1/-1}
 .pcard.build{border-top-color:var(--acc)}
 .pcard.plan{border-top-color:var(--navy)}
 .pcard.done{border-top-color:var(--txt3)}
@@ -45,22 +46,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);b
 .pc-sub{font-family:var(--mono);font-size:9px;color:var(--acc);margin-bottom:12px}
 .pc-desc{font-family:var(--mono);font-size:10px;color:var(--txt2);line-height:1.8}
 .pc-n{position:absolute;bottom:12px;right:16px;font-family:var(--cond);font-size:52px;font-weight:800;color:var(--b1);line-height:1;pointer-events:none}
-/* HARDWARE TABLE */
-.hw{border:1px solid var(--b2);margin-top:8px}
+.hw{border:1px solid var(--b2)}
 .hw-row{display:grid;grid-template-columns:200px 1fr 1fr;border-bottom:1px solid var(--b1);transition:background .15s}
 .hw-row:last-child{border-bottom:none}
 .hw-row:hover{background:var(--s2)}
 .hw-row.header{background:var(--s2)}
-.hc{padding:14px 18px;font-family:var(--mono);font-size:10px}
+.hc{padding:14px 18px;font-family:var(--mono);font-size:10px;color:var(--txt2)}
 .hc.hh{font-size:8px;color:var(--txt3);text-transform:uppercase;letter-spacing:.12em}
 .hc.name{color:var(--txt);font-weight:700}
-.hc.spec{color:var(--txt2)}
-.hc.use{color:var(--txt3)}
 .footer{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:22px 64px;border-top:1px solid var(--b2);display:flex;justify-content:space-between;align-items:center}
 .fl{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt3);letter-spacing:.14em;text-transform:uppercase;line-height:1.8}
 .fr{font-family:var(--mono);font-size:9px;color:var(--txt3);text-align:right;line-height:1.8}
 .facc{color:var(--acc)}
-@media(max-width:960px){.nav-brand{padding:0 0 0 16px}.nav-links a{padding:0 14px}.page{padding:80px 20px 60px}.pgrid{grid-template-columns:1fr}.hw-row{grid-template-columns:1fr 1fr}.hc.use{display:none}.footer{padding:20px;flex-direction:column;gap:10px;text-align:center}}
+@media(max-width:960px){.nav-brand{padding:0 0 0 16px}.nav-links a{padding:0 12px;font-size:10px}.page{padding:80px 20px 60px}.pgrid{grid-template-columns:1fr}.pcard.featured{grid-column:1}.hw-row{grid-template-columns:1fr 1fr}.hc:last-child{display:none}.footer{padding:20px;flex-direction:column;gap:10px;text-align:center}}
 </style>
 </head>
 <body>
@@ -83,67 +81,67 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);b
     <div class="page-eyebrow">Front Range RF Research Initiative</div>
     <div class="page-title">Personal Projects</div>
     <div class="page-rule"></div>
-    <p class="page-desc">Builds, experiments, and side projects outside of formal FRRRI research. Hardware, software, and RF infrastructure.</p>
+    <p class="page-desc">Builds, experiments, and side projects. Hardware, software, and RF infrastructure. Some of these will eventually become formal research.</p>
   </div>
 
   <div class="section">
-    <div class="shdr"><span class="sn">01</span><div class="sr"></div><span class="stag">Builds</span></div>
-    <div class="stitle">Active Builds</div>
+    <div class="shdr"><span class="sn">01</span><div class="sr"></div><span class="stag">Featured</span></div>
+    <div class="stitle">Highlight</div>
     <div class="pgrid">
 
+      <div class="pcard featured">
+        <div class="pc-st live">Active -- Summer 2026</div>
+        <div class="pc-title">CSST Part 15 FM Radio Station</div>
+        <div class="pc-sub">Colorado Springs School of Technology -- 88 to 108 MHz</div>
+        <p class="pc-desc">A legal Part 15 FM station for Colorado Springs School of Technology. The school has no broadcast infrastructure -- this would be the first. Classic alternative format with engineering and technology talk segments. Requires the bandpass filter build first to clean up the identified 2nd and 4th harmonics from the 500mW transmitter. One of the more interesting projects going right now because it combines RF engineering, broadcast operations, and actually doing something useful for the school.</p>
+        <div class="pc-n">FM</div>
+      </div>
+
       <div class="pcard build">
-        <div class="pc-st live">&#9679; Summer 2026</div>
+        <div class="pc-st live">Build -- Summer 2026</div>
         <div class="pc-title">FM Bandpass Filter</div>
-        <div class="pc-sub">88–108 MHz &mdash; UCCS Workshop Build</div>
-        <p class="pc-desc">Design and construction of a bandpass filter for a 500mW FM transmitter. RTL-SDR analysis identified 2nd and 4th harmonics — consistent with a sawtooth oscillator clock. Filter built at UCCS workshop. Prerequisite for the CSST Part 15 school radio station.</p>
+        <div class="pc-sub">88 to 108 MHz -- UCCS Workshop</div>
+        <p class="pc-desc">Design and construction of a bandpass filter for a 500mW FM transmitter. RTL-SDR analysis identified 2nd and 4th harmonics consistent with a sawtooth oscillator clock. Filter built at UCCS workshop. Prerequisite for the CSST FM station.</p>
         <div class="pc-n">01</div>
       </div>
 
       <div class="pcard build">
-        <div class="pc-st live">&#9679; Summer 2026</div>
+        <div class="pc-st live">Build -- Summer 2026</div>
         <div class="pc-title">Raspberry Pi 5 SDR Platform</div>
-        <div class="pc-sub">PiHPSDR &mdash; Portable SDR Station</div>
-        <p class="pc-desc">Pi 5 with 5" touchscreen running PiHPSDR. Portable field deployable SDR platform for spectrum monitoring, portable ADS-B reception, and general RF work outside the permanent station.</p>
+        <div class="pc-sub">PiHPSDR -- Portable</div>
+        <p class="pc-desc">Pi 5 with 5" touchscreen running PiHPSDR. Portable field deployable SDR platform for spectrum monitoring and portable ADS-B work outside the permanent station.</p>
         <div class="pc-n">02</div>
       </div>
 
-      <div class="pcard plan">
-        <div class="pc-st">&#9675; Fall 2026</div>
-        <div class="pc-title">CSST Part 15 FM Station</div>
-        <div class="pc-sub">Colorado Springs School of Technology</div>
-        <p class="pc-desc">Legal Part 15 FM station for Colorado Springs School of Technology. Classic alternative format with engineering and technology talk segments. First broadcast infrastructure at the school. Requires bandpass filter build first.</p>
+      <div class="pcard build">
+        <div class="pc-st live">Active -- Summer 2026</div>
+        <div class="pc-title">NanoVNA Antenna Measurements</div>
+        <div class="pc-sub">DC to 3 GHz -- SWR, Impedance, S21</div>
+        <p class="pc-desc">NanoVNA measurement campaign to validate the FR-2026-05 co-siting analysis predictions against real hardware. SWR and impedance across frequency, S21 isolation between the two installed antennas. Measured vs. predicted isolation is a publishable result on its own.</p>
         <div class="pc-n">03</div>
       </div>
 
       <div class="pcard plan">
-        <div class="pc-st">&#9675; Summer 2026</div>
-        <div class="pc-title">NanoVNA Antenna Measurements</div>
-        <div class="pc-sub">NanoVNA V2 &mdash; SWR, Impedance, S21</div>
-        <p class="pc-desc">NanoVNA-based measurement campaign validating FR-2026-05 predictions. Antenna SWR and impedance measurements across frequency. S21 isolation between the two installed antennas to compare against the free-space co-polarized isolation model. A measured vs. predicted S21 comparison is publishable in its own right.</p>
+        <div class="pc-st">Planned -- 2026 to 2027</div>
+        <div class="pc-title">Hydrogen Line Receiver</div>
+        <div class="pc-sub">1420.405 MHz -- 21cm</div>
+        <p class="pc-desc">First radio astronomy project. RTL-SDR V3 with a dedicated feedhorn and 1420 MHz LNA. Building on the ADS-B station hardware. Target: confirmed hydrogen line detection and galactic structure mapping via Doppler shift analysis.</p>
         <div class="pc-n">04</div>
       </div>
 
-      <div class="pcard plan">
-        <div class="pc-st">&#9675; Junior Year 2026–27</div>
-        <div class="pc-title">Hydrogen Line Receiver</div>
-        <div class="pc-sub">1420.405 MHz &mdash; 21cm</div>
-        <p class="pc-desc">First radio astronomy project. RTL-SDR V3 with a dedicated feedhorn and 1420 MHz LNA. Building on existing station hardware. Target: confirmed hydrogen line detection and galactic structure mapping via Doppler shift analysis.</p>
-        <div class="pc-n">05</div>
-      </div>
-
       <div class="pcard done">
-        <div class="pc-st">&#9670; Complete</div>
+        <div class="pc-st">Complete</div>
         <div class="pc-title">Stellar Labs 30-2460 Pattern Model</div>
-        <div class="pc-sub">MATLAB R2025b &mdash; 7.375 dBi Simulated</div>
-        <p class="pc-desc">The Stellar Labs 30-2460 4-element FM Yagi doesn't include a radiation pattern in its documentation. Modeled independently in MATLAB using the array factor derivation and pattern multiplication theorem. Simulated gain: 7.375 dBi. First independently derived antenna pattern model for FRRRI.</p>
-        <div class="pc-n">06</div>
+        <div class="pc-sub">MATLAB R2025b -- 7.375 dBi Simulated</div>
+        <p class="pc-desc">The Stellar Labs 30-2460 4-element FM Yagi does not include a radiation pattern in its documentation. Modeled independently in MATLAB using the array factor derivation and pattern multiplication theorem. First independently derived antenna pattern model for FRRRI.</p>
+        <div class="pc-n">05</div>
       </div>
 
     </div>
   </div>
 
   <div class="section">
-    <div class="shdr"><span class="sn">02</span><div class="sr"></div><span class="stag">Hardware Inventory</span></div>
+    <div class="shdr"><span class="sn">02</span><div class="sr"></div><span class="stag">Hardware</span></div>
     <div class="stitle">Equipment</div>
     <div class="hw">
       <div class="hw-row header">
@@ -151,23 +149,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);b
         <div class="hc hh">Specification</div>
         <div class="hc hh">Use</div>
       </div>
-      <div class="hw-row"><div class="hc name">Raspberry Pi 4 8GB</div><div class="hc spec">GeeekPi starter kit &mdash; headless</div><div class="hc use">Permanent ADS-B station</div></div>
-      <div class="hw-row"><div class="hc name">Raspberry Pi 5 + 5" Display</div><div class="hc spec">Touchscreen, PiHPSDR</div><div class="hc use">Portable SDR platform</div></div>
-      <div class="hw-row"><div class="hc name">RTL-SDR Blog V3 ×2</div><div class="hc spec">Serial: ADSB1090 / GENERAL</div><div class="hc use">ADS-B + general monitoring</div></div>
-      <div class="hw-row"><div class="hc name">FlightAware Collinear</div><div class="hc spec">978/1090 MHz &mdash; 6 dBi &mdash; N=4 elements</div><div class="hc use">Primary ADS-B antenna</div></div>
-      <div class="hw-row"><div class="hc name">Tram Model 1411</div><div class="hc spec">25–1300 MHz discone &mdash; 50&Omega;</div><div class="hc use">Wideband monitoring</div></div>
-      <div class="hw-row"><div class="hc name">SAWbird+ ADS-B LNA</div><div class="hc spec">&gt;40 dB FM rejection &mdash; 1090 MHz</div><div class="hc use">ADS-B front-end filter</div></div>
-      <div class="hw-row"><div class="hc name">MLA-30 Magnetic Loop</div><div class="hc spec">HF/AM receive &mdash; directional nulls</div><div class="hc use">HF monitoring</div></div>
-      <div class="hw-row"><div class="hc name">Nooelec Ham It Up</div><div class="hc spec">HF upconverter</div><div class="hc use">RTL-SDR HF extension</div></div>
-      <div class="hw-row"><div class="hc name">Stellar Labs 30-2460</div><div class="hc spec">4-element FM Yagi &mdash; 7.375 dBi (modeled)</div><div class="hc use">Directional FM / field work</div></div>
-      <div class="hw-row"><div class="hc name">NanoVNA V2</div><div class="hc spec">DC–3 GHz &mdash; S11, S21, Smith chart</div><div class="hc use">Antenna measurement / validation</div></div>
+      <div class="hw-row"><div class="hc name">Raspberry Pi 4 8GB</div><div class="hc">GeeekPi starter kit -- headless</div><div class="hc">Permanent ADS-B station</div></div>
+      <div class="hw-row"><div class="hc name">Raspberry Pi 5 + 5" Display</div><div class="hc">Touchscreen -- PiHPSDR</div><div class="hc">Portable SDR platform</div></div>
+      <div class="hw-row"><div class="hc name">RTL-SDR Blog V3 x2</div><div class="hc">Serial: ADSB1090 / GENERAL</div><div class="hc">ADS-B and general monitoring</div></div>
+      <div class="hw-row"><div class="hc name">FlightAware Collinear</div><div class="hc">978/1090 MHz -- 6 dBi -- N=4 elements</div><div class="hc">Primary ADS-B antenna</div></div>
+      <div class="hw-row"><div class="hc name">Tram Model 1411</div><div class="hc">25 to 1300 MHz discone -- 50 ohm</div><div class="hc">Wideband monitoring</div></div>
+      <div class="hw-row"><div class="hc name">SAWbird+ ADS-B LNA</div><div class="hc">>40 dB FM rejection -- 1090 MHz</div><div class="hc">ADS-B front-end filter</div></div>
+      <div class="hw-row"><div class="hc name">MLA-30 Magnetic Loop</div><div class="hc">HF/AM receive -- directional nulls</div><div class="hc">HF monitoring</div></div>
+      <div class="hw-row"><div class="hc name">Nooelec Ham It Up</div><div class="hc">HF upconverter</div><div class="hc">RTL-SDR HF extension</div></div>
+      <div class="hw-row"><div class="hc name">Stellar Labs 30-2460</div><div class="hc">4-element FM Yagi -- 7.375 dBi modeled</div><div class="hc">Directional FM and field work</div></div>
+      <div class="hw-row"><div class="hc name">NanoVNA V2</div><div class="hc">DC to 3 GHz -- S11, S21, Smith chart</div><div class="hc">Antenna measurement and validation</div></div>
     </div>
   </div>
 </div>
 
 <footer class="footer">
-  <div class="fl">Front Range RF Research Initiative<br><span class="facc">AF0FO</span> &mdash; Colorado Springs, CO</div>
-  <div class="fr">Est. 2025 &mdash; All MATLAB code CC BY 4.0<br>AIAA &middot; IEEE &middot; ARRL</div>
+  <div class="fl">Front Range RF Research Initiative<br><span class="facc">AF0FO</span> -- Colorado Springs, CO</div>
+  <div class="fr">Est. 2025 -- All MATLAB code CC BY 4.0<br>AIAA -- IEEE -- ARRL</div>
 </footer>
 </body>
 </html>
