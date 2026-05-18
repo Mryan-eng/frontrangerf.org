@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Front Range RF</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#000;--s1:#080d12;--s2:#0c1218;--b1:#162030;--b2:#1e2e44;--navy:#1a3c6e;--blue:#2a6cc4;--acc:#5b9cf6;--acc2:#88beff;--txt:#ddeeff;--txt2:#6a90b8;--txt3:#2e4860;--mono:'Space Mono',monospace;--cond:'Barlow Condensed',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--cond);overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(22,32,48,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(22,32,48,.55) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:0;left:0;right:0;height:280px;background:linear-gradient(180deg,rgba(42,108,196,.08) 0%,transparent 100%);pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);border-bottom:1px solid var(--b2);height:52px;display:flex;align-items:stretch}
+.nav-brand{display:flex;align-items:center;padding:0 0 0 40px;border-right:1px solid var(--b1)}
+.nav-logo{font-family:var(--cond);font-size:13px;font-weight:700;color:#fff;letter-spacing:.2em;text-decoration:none;text-transform:uppercase;padding-right:24px}
+.nav-call{font-family:var(--mono);font-size:10px;color:var(--acc);letter-spacing:.14em;padding:0 24px;display:flex;align-items:center;border-right:1px solid var(--b1)}
+.nav-links{display:flex;list-style:none;margin-left:auto}
+.nav-links a{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt2);text-decoration:none;letter-spacing:.18em;text-transform:uppercase;padding:0 22px;height:52px;display:flex;align-items:center;border-left:1px solid var(--b1);transition:all .15s}
+.nav-links a:hover{color:var(--acc2);background:rgba(42,108,196,.08)}
+.nav-links a.active{color:var(--acc);border-bottom:2px solid var(--acc)}
+.page{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:96px 64px 80px}
+.page-hdr{margin-bottom:56px}
+.page-eyebrow{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px}
+.page-eyebrow::before{content:'';width:32px;height:1px;background:var(--b2)}
+.page-title{font-family:var(--cond);font-size:clamp(48px,7vw,84px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.02em;line-height:.9;margin-bottom:16px}
+.page-rule{width:56px;height:3px;background:var(--blue);margin-bottom:20px}
+.page-desc{font-family:var(--mono);font-size:11px;color:var(--txt2);line-height:1.9;max-width:560px}
+.section{margin-bottom:60px}
+.shdr{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.sn{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.14em}
+.sr{flex:1;height:1px;background:var(--b2)}
+.stag{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.12em;text-transform:uppercase}
+.stitle{font-family:var(--cond);font-size:28px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.06em;margin-bottom:24px}
+/* BIO BLOCK */
+.bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b2);border:1px solid var(--b2);margin-bottom:24px}
+.bio-block{background:var(--s1);padding:32px}
+.bio-block h3{font-family:var(--mono);font-size:8px;color:var(--acc);letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+.bio-block p{font-family:var(--mono);font-size:11px;color:var(--txt2);line-height:1.9;margin-bottom:12px}
+/* CREDENTIAL ITEMS */
+.cred-list{list-style:none;display:flex;flex-direction:column;gap:0;border:1px solid var(--b2)}
+.cred-item{display:flex;align-items:center;gap:0;border-bottom:1px solid var(--b1);transition:background .15s}
+.cred-item:last-child{border-bottom:none}
+.cred-item:hover{background:var(--s2)}
+.ci-mark{font-family:var(--mono);font-size:9px;color:var(--acc);padding:14px 20px;border-right:1px solid var(--b1);flex-shrink:0}
+.ci-text{font-family:var(--cond);font-size:16px;font-weight:600;color:var(--txt);padding:14px 20px;letter-spacing:.04em;flex:1}
+.ci-sub{font-family:var(--mono);font-size:9px;color:var(--txt3);padding:14px 20px;text-align:right;flex-shrink:0}
+/* WORK OUTPUT */
+.output-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b2);border:1px solid var(--b2)}
+.ocard{background:var(--s1);padding:24px 26px;transition:background .18s}
+.ocard:hover{background:var(--s2)}
+.oc-type{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.oc-title{font-family:var(--cond);font-size:17px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:6px;text-transform:uppercase;letter-spacing:.02em}
+.oc-detail{font-family:var(--mono);font-size:10px;color:var(--txt2);line-height:1.7}
+/* PATH */
+.path-list{display:flex;flex-direction:column;gap:1px;background:var(--b2);border:1px solid var(--b2)}
+.path-item{background:var(--s1);padding:18px 24px;display:flex;align-items:center;gap:20px}
+.pi-year{font-family:var(--mono);font-size:9px;color:var(--acc);letter-spacing:.1em;min-width:60px;flex-shrink:0}
+.pi-text{font-family:var(--cond);font-size:16px;font-weight:600;color:var(--txt);letter-spacing:.03em}
+.pi-sub{font-family:var(--mono);font-size:9px;color:var(--txt3);margin-left:auto;flex-shrink:0}
+.footer{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:22px 64px;border-top:1px solid var(--b2);display:flex;justify-content:space-between;align-items:center}
+.fl{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt3);letter-spacing:.14em;text-transform:uppercase;line-height:1.8}
+.fr{font-family:var(--mono);font-size:9px;color:var(--txt3);text-align:right;line-height:1.8}
+.facc{color:var(--acc)}
+@media(max-width:960px){.nav-brand{padding:0 0 0 16px}.nav-links a{padding:0 14px}.page{padding:80px 20px 60px}.bio-grid{grid-template-columns:1fr}.output-grid{grid-template-columns:1fr}.ci-sub{display:none}.footer{padding:20px;flex-direction:column;gap:10px;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">
+    <a href="index.html" class="nav-logo">Front Range RF</a>
+    <span class="nav-call">AF0FO</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="research.html">Research</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="projects.html">Personal Projects</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="page-hdr">
+    <div class="page-eyebrow">Front Range RF Research Initiative</div>
+    <div class="page-title">Portfolio</div>
+    <div class="page-rule"></div>
+    <p class="page-desc">Work output, credentials, and academic path. Everything built from scratch starting 2025.</p>
+  </div>
+
+  <div class="section">
+    <div class="shdr"><span class="sn">01</span><div class="sr"></div><span class="stag">Background</span></div>
+    <div class="stitle">Matthew Smith</div>
+    <div class="bio-grid">
+      <div class="bio-block">
+        <h3>Who I Am</h3>
+        <p>Started FRRRI in 2025 with Christmas money, a RTL-SDR, and a question about VHF propagation over the Rampart Range. Everything since — the Extra class license, the MATLAB antenna modeling, the Maxwell derivations, the ADS-B station — built on that first project.</p>
+        <p>Heading to Colorado School of Mines for Electrical Engineering. Focus: antennas, computational EM, and RF propagation. Longer term: graduate work in Sweden.</p>
+      </div>
+      <div class="bio-block">
+        <h3>What I Work On</h3>
+        <p>Antenna pattern modeling from first principles. Terrain propagation analysis. ADS-B receive station engineering. RF hardware builds. Signal processing. The work spans from Maxwell derivations on paper to physical antenna installation on a garage roof.</p>
+        <p>All MATLAB code open source under CC BY 4.0. Reviewed by Dr. Paul Wilkinson, SIEEE.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="shdr"><span class="sn">02</span><div class="sr"></div><span class="stag">Credentials</span></div>
+    <div class="stitle">Licenses &amp; Memberships</div>
+    <ul class="cred-list">
+      <li class="cred-item">
+        <span class="ci-mark">//</span>
+        <span class="ci-text">FCC Amateur Extra Class License</span>
+        <span class="ci-sub">Callsign AF0FO</span>
+      </li>
+      <li class="cred-item">
+        <span class="ci-mark">//</span>
+        <span class="ci-text">AIAA Student Member</span>
+        <span class="ci-sub">American Institute of Aeronautics and Astronautics</span>
+      </li>
+      <li class="cred-item">
+        <span class="ci-mark">//</span>
+        <span class="ci-text">IEEE Member</span>
+        <span class="ci-sub">Institute of Electrical and Electronics Engineers</span>
+      </li>
+      <li class="cred-item">
+        <span class="ci-mark">//</span>
+        <span class="ci-text">ARRL Member</span>
+        <span class="ci-sub">American Radio Relay League</span>
+      </li>
+      <li class="cred-item">
+        <span class="ci-mark">//</span>
+        <span class="ci-text">GROL Elements 1/3/8</span>
+        <span class="ci-sub">Pending &mdash; Summer 2026</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="shdr"><span class="sn">03</span><div class="sr"></div><span class="stag">Work Output</span></div>
+    <div class="stitle">What I've Built</div>
+    <div class="output-grid">
+      <div class="ocard">
+        <div class="oc-type">Technical Report</div>
+        <div class="oc-title">FR-2026-05 Co-siting Analysis</div>
+        <p class="oc-detail">Full Maxwell derivation → far-field integral → E(&phi;) pattern formula. N=4 collinear reverse-engineering. Binding isolation constraint identified. In preparation for ARRL QEX.</p>
+      </div>
+      <div class="ocard">
+        <div class="oc-type">Technical Report</div>
+        <div class="oc-title">FR-2026-01 VHF Propagation Study</div>
+        <p class="oc-detail">88-mile terrain propagation study across the Rampart Range. Friis link budget, GIS terrain analysis, field measurements. Reviewed by Dr. Paul Wilkinson, SIEEE.</p>
+      </div>
+      <div class="ocard">
+        <div class="oc-type">MATLAB Modeling</div>
+        <div class="oc-title">Antenna Pattern Simulation</div>
+        <p class="oc-detail">Tram 1411 elevation patterns at 10 frequencies. FlightAware collinear array factor model. Stellar Labs Yagi pattern. All derived from first principles, not lookup tables.</p>
+      </div>
+      <div class="ocard">
+        <div class="oc-type">Hardware Build</div>
+        <div class="oc-title">Permanent ADS-B Station</div>
+        <p class="oc-detail">Two-antenna receive station on a metal garage roof. FlightAware collinear + Tram 1411 discone. Raspberry Pi 4, RTL-SDR V3, dump1090-fa, Tailscale remote access.</p>
+      </div>
+      <div class="ocard">
+        <div class="oc-type">CubeSat Review</div>
+        <div class="oc-title">ClydeGuard RF Communications Review</div>
+        <p class="oc-detail">RF and communications review of a NASA-targeted CubeSat forestry health proposal. Identified link budget, latency, and antenna geometry gaps. AIAA Space Lab collaboration.</p>
+      </div>
+      <div class="ocard">
+        <div class="oc-type">Research Website</div>
+        <div class="oc-title">frontrangerf.org</div>
+        <p class="oc-detail">FRRRI research platform. All publications, MATLAB code, and project documentation. Built and maintained independently.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="shdr"><span class="sn">04</span><div class="sr"></div><span class="stag">Academic Path</span></div>
+    <div class="stitle">Where I'm Headed</div>
+    <div class="path-list">
+      <div class="path-item"><span class="pi-year">2025–28</span><span class="pi-text">Colorado Springs School of Technology &mdash; Sophomore &rarr; Graduation</span><span class="pi-sub">Spring 2028</span></div>
+      <div class="path-item"><span class="pi-year">2026</span><span class="pi-text">Challenger Engineering Pathfinder Academy</span><span class="pi-sub">Summer 2026</span></div>
+      <div class="path-item"><span class="pi-year">2026–28</span><span class="pi-text">UCCS / PPSC Concurrent Enrollment &mdash; Physics Minor + Math Sequence</span><span class="pi-sub">E&amp;M I/II, Calc I–III, DiffEq, LinAlg</span></div>
+      <div class="path-item"><span class="pi-year">2028+</span><span class="pi-text">Colorado School of Mines &mdash; Electrical Engineering</span><span class="pi-sub">Antennas &amp; Wireless Communications</span></div>
+      <div class="path-item"><span class="pi-year">TBD</span><span class="pi-text">Graduate School &mdash; PhD Track</span><span class="pi-sub">Sweden / US</span></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="fl">Front Range RF Research Initiative<br><span class="facc">AF0FO</span> &mdash; Colorado Springs, CO</div>
+  <div class="fr">Est. 2025 &mdash; All MATLAB code CC BY 4.0<br>AIAA &middot; IEEE &middot; ARRL</div>
+</footer>
+</body>
+</html>

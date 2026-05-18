@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Front Range RF</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#000;--s1:#080d12;--s2:#0c1218;--b1:#162030;--b2:#1e2e44;--navy:#1a3c6e;--blue:#2a6cc4;--acc:#5b9cf6;--acc2:#88beff;--txt:#ddeeff;--txt2:#6a90b8;--txt3:#2e4860;--mono:'Space Mono',monospace;--cond:'Barlow Condensed',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--cond);overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(22,32,48,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(22,32,48,.55) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:0;left:0;right:0;height:280px;background:linear-gradient(180deg,rgba(42,108,196,.08) 0%,transparent 100%);pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);border-bottom:1px solid var(--b2);height:52px;display:flex;align-items:stretch}
+.nav-brand{display:flex;align-items:center;padding:0 0 0 40px;border-right:1px solid var(--b1)}
+.nav-logo{font-family:var(--cond);font-size:13px;font-weight:700;color:#fff;letter-spacing:.2em;text-decoration:none;text-transform:uppercase;padding-right:24px}
+.nav-call{font-family:var(--mono);font-size:10px;color:var(--acc);letter-spacing:.14em;padding:0 24px;display:flex;align-items:center;border-right:1px solid var(--b1)}
+.nav-links{display:flex;list-style:none;margin-left:auto}
+.nav-links a{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt2);text-decoration:none;letter-spacing:.18em;text-transform:uppercase;padding:0 22px;height:52px;display:flex;align-items:center;border-left:1px solid var(--b1);transition:all .15s}
+.nav-links a:hover{color:var(--acc2);background:rgba(42,108,196,.08)}
+.nav-links a.active{color:var(--acc);border-bottom:2px solid var(--acc)}
+.page{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:96px 64px 80px}
+.page-hdr{margin-bottom:56px}
+.page-eyebrow{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px}
+.page-eyebrow::before{content:'';width:32px;height:1px;background:var(--b2)}
+.page-title{font-family:var(--cond);font-size:clamp(48px,7vw,84px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.02em;line-height:.9;margin-bottom:16px}
+.page-rule{width:56px;height:3px;background:var(--blue);margin-bottom:20px}
+.page-desc{font-family:var(--mono);font-size:11px;color:var(--txt2);line-height:1.9;max-width:480px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b2);border:1px solid var(--b2);margin-bottom:32px}
+.cblock{background:var(--s1);padding:36px}
+.cblock h3{font-family:var(--mono);font-size:8px;color:var(--acc);letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px}
+.contact-items{display:flex;flex-direction:column;gap:0;border:1px solid var(--b2)}
+.ci{display:flex;align-items:center;border-bottom:1px solid var(--b1);transition:background .15s}
+.ci:last-child{border-bottom:none}
+.ci:hover{background:var(--s2)}
+.ci-lbl{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.12em;text-transform:uppercase;padding:14px 20px;border-right:1px solid var(--b1);min-width:100px;flex-shrink:0}
+.ci-val{font-family:var(--mono);font-size:11px;color:var(--txt);padding:14px 20px}
+.ci-val a{color:var(--acc);text-decoration:none}
+.ci-val a:hover{color:#fff}
+.note{background:var(--s1);border:1px solid var(--b2);padding:24px 28px}
+.note p{font-family:var(--mono);font-size:10px;color:var(--txt2);line-height:1.8}
+.footer{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:22px 64px;border-top:1px solid var(--b2);display:flex;justify-content:space-between;align-items:center}
+.fl{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt3);letter-spacing:.14em;text-transform:uppercase;line-height:1.8}
+.fr{font-family:var(--mono);font-size:9px;color:var(--txt3);text-align:right;line-height:1.8}
+.facc{color:var(--acc)}
+@media(max-width:960px){.nav-brand{padding:0 0 0 16px}.nav-links a{padding:0 14px}.page{padding:80px 20px 60px}.contact-grid{grid-template-columns:1fr}.footer{padding:20px;flex-direction:column;gap:10px;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">
+    <a href="index.html" class="nav-logo">Front Range RF</a>
+    <span class="nav-call">AF0FO</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="research.html">Research</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="projects.html">Personal Projects</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="page-hdr">
+    <div class="page-eyebrow">Front Range RF Research Initiative</div>
+    <div class="page-title">Contact</div>
+    <div class="page-rule"></div>
+    <p class="page-desc">Open to collaboration, research inquiries, and technical discussion. RF, antenna theory, propagation, and signal processing.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="cblock">
+      <h3>Direct Contact</h3>
+      <div class="contact-items">
+        <div class="ci">
+          <span class="ci-lbl">Callsign</span>
+          <span class="ci-val">AF0FO</span>
+        </div>
+        <div class="ci">
+          <span class="ci-lbl">Email</span>
+          <span class="ci-val"><a href="mailto:frontrangerf.research@gmail.com">frontrangerf.research@gmail.com</a></span>
+        </div>
+        <div class="ci">
+          <span class="ci-lbl">Location</span>
+          <span class="ci-val">Colorado Springs, CO</span>
+        </div>
+        <div class="ci">
+          <span class="ci-lbl">License</span>
+          <span class="ci-val">CC BY 4.0 &mdash; All code open source</span>
+        </div>
+      </div>
+    </div>
+    <div class="cblock">
+      <h3>Affiliations</h3>
+      <div class="contact-items">
+        <div class="ci">
+          <span class="ci-lbl">AIAA</span>
+          <span class="ci-val"><a href="https://aiaa.org" target="_blank">aiaa.org</a></span>
+        </div>
+        <div class="ci">
+          <span class="ci-lbl">IEEE</span>
+          <span class="ci-val"><a href="https://ieee.org" target="_blank">ieee.org</a></span>
+        </div>
+        <div class="ci">
+          <span class="ci-lbl">ARRL</span>
+          <span class="ci-val"><a href="https://arrl.org" target="_blank">arrl.org</a></span>
+        </div>
+        <div class="ci">
+          <span class="ci-lbl">PPRAA</span>
+          <span class="ci-val">Pikes Peak Radio Amateur Association</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <p>Open to collaboration on RF propagation research, antenna modeling, and signal processing. MATLAB code and raw data from all FRRRI studies available on request. If you're an RF or EM researcher in the Colorado Springs area, feel free to reach out.</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="fl">Front Range RF Research Initiative<br><span class="facc">AF0FO</span> &mdash; Colorado Springs, CO</div>
+  <div class="fr">Est. 2025 &mdash; All MATLAB code CC BY 4.0<br>AIAA &middot; IEEE &middot; ARRL</div>
+</footer>
+</body>
+</html>
