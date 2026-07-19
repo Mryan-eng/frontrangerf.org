@@ -1,149 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Publications -- Front Range RF</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#000;--s1:#080d12;--s2:#0c1218;--b1:#162030;--b2:#1e2e44;--navy:#1a3c6e;--blue:#2a6cc4;--acc:#5b9cf6;--acc2:#88beff;--txt:#eef4ff;--txt2:#8aaccc;--txt3:#2e4860;--mono:'Space Mono',monospace;--cond:'Barlow Condensed',sans-serif}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:var(--cond);overflow-x:hidden;min-height:100vh}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(22,32,48,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(22,32,48,.55) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
-body::after{content:'';position:fixed;top:0;left:0;right:0;height:280px;background:linear-gradient(180deg,rgba(42,108,196,.08) 0%,transparent 100%);pointer-events:none;z-index:0}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);border-bottom:1px solid var(--b2);height:52px;display:flex;align-items:stretch}
-.nav-brand{display:flex;align-items:center;padding:0 0 0 40px;border-right:1px solid var(--b1)}
-.nav-logo{font-family:var(--cond);font-size:13px;font-weight:700;color:#fff;letter-spacing:.2em;text-decoration:none;text-transform:uppercase;padding-right:24px}
-.nav-call{font-family:var(--mono);font-size:10px;color:var(--acc);letter-spacing:.14em;padding:0 24px;display:flex;align-items:center;border-right:1px solid var(--b1)}
-.nav-links{display:flex;list-style:none;margin-left:auto}
-.nav-links a{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt2);text-decoration:none;letter-spacing:.18em;text-transform:uppercase;padding:0 22px;height:52px;display:flex;align-items:center;border-left:1px solid var(--b1);transition:all .15s}
-.nav-links a:hover{color:var(--acc2);background:rgba(42,108,196,.08)}
-.nav-links a.active{color:var(--acc);border-bottom:2px solid var(--acc)}
-.page{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:96px 64px 80px}
-.page-hdr{margin-bottom:56px}
-.page-eyebrow{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px}
-.page-eyebrow::before{content:'';width:32px;height:1px;background:var(--b2)}
-.page-title{font-family:var(--cond);font-size:clamp(48px,7vw,84px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.02em;line-height:.9;margin-bottom:16px}
-.page-rule{width:56px;height:3px;background:var(--blue);margin-bottom:20px}
-.page-desc{font-family:var(--mono);font-size:11px;color:var(--txt2);line-height:1.9;max-width:560px}
-.section{margin-bottom:56px}
-.shdr{display:flex;align-items:center;gap:14px;margin-bottom:8px}
-.sn{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.14em}
-.sr{flex:1;height:1px;background:var(--b2)}
-.stag{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.12em;text-transform:uppercase}
-.stitle{font-family:var(--cond);font-size:28px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.06em;margin-bottom:24px}
-.publist{display:flex;flex-direction:column;gap:1px;background:var(--b2);border:1px solid var(--b2)}
-.pub{background:var(--s1);padding:32px 36px;border-left:3px solid var(--b2);transition:background .18s}
-.pub:hover{background:var(--s2)}
-.pub.prep{border-left-color:var(--acc)}
-.pub.done{border-left-color:var(--txt3)}
-.pub-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:14px}
-.pub-meta{display:flex;gap:12px;align-items:center;margin-bottom:10px}
-.pub-yr{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.1em}
-.pub-id{font-family:var(--mono);font-size:9px;color:var(--acc);letter-spacing:.08em}
-.pub-title{font-family:var(--cond);font-size:22px;font-weight:700;color:#fff;letter-spacing:.02em;line-height:1.25;margin-bottom:6px}
-.pub-authors{font-family:var(--mono);font-size:10px;color:var(--txt2);margin-bottom:6px}
-.pub-venue{font-family:var(--mono);font-size:10px;color:var(--txt3);margin-bottom:14px}
-.pub-abs{font-family:var(--mono);font-size:11px;color:var(--txt2);line-height:1.85;margin-bottom:20px;max-width:800px}
-.pub-badge{font-family:var(--mono);font-size:8px;padding:4px 12px;border:1px solid;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
-.pub-badge.prep{border-color:var(--acc);color:var(--acc)}
-.pub-badge.done{border-color:var(--txt3);color:var(--txt3)}
-.pub-links{display:flex;gap:12px;flex-wrap:wrap}
-.pub-link{font-family:var(--mono);font-size:9px;color:var(--acc);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--b2);transition:all .15s}
-.pub-link:hover{border-color:var(--acc);background:rgba(91,156,246,.08)}
-.pub-link.disabled{color:var(--txt3);border-color:var(--b1);pointer-events:none;cursor:default}
-.coming-soon{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--b1)}
-.matlab-note{background:var(--s1);border:1px solid var(--b2);border-left:3px solid var(--acc);padding:24px 28px;margin-top:32px;display:flex;align-items:flex-start;gap:20px}
-.mn-icon{font-family:var(--mono);font-size:9px;color:var(--acc);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;padding-top:2px}
-.mn-text{font-family:var(--mono);font-size:10px;color:var(--txt2);line-height:1.8}
-.mn-text a{color:var(--acc);text-decoration:none}
-.mn-text a:hover{color:#fff}
-.footer{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:22px 64px;border-top:1px solid var(--b2);display:flex;justify-content:space-between;align-items:center}
-.fl{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt3);letter-spacing:.14em;text-transform:uppercase;line-height:1.8}
-.fr{font-family:var(--mono);font-size:9px;color:var(--txt3);text-align:right;line-height:1.8}
-.facc{color:var(--acc)}
-@media(max-width:960px){.nav-brand{padding:0 0 0 16px}.nav-links a{padding:0 12px;font-size:10px}.page{padding:80px 20px 60px}.pub-top{flex-direction:column}.footer{padding:20px;flex-direction:column;gap:10px;text-align:center}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Front Range RF</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --text: #1a1a1a; --text-light: #666; --text-lighter: #999; --border: #ddd; --bg: #fff; --bg-secondary: #f9f9f9; color-scheme: light; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        nav { border-bottom: 1px solid var(--border); padding: 20px 0; margin-bottom: 40px; }
+        .nav-inner { max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-size: 16px; font-weight: 600; color: var(--text); text-decoration: none; }
+        .nav-brand span { font-size: 12px; color: var(--text-light); margin-left: 12px; }
+        .nav-links { display: flex; gap: 24px; list-style: none; }
+        .nav-links a { font-size: 13px; color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active { color: var(--text); font-weight: 600; }
+        h1 { font-size: 36px; font-weight: 600; margin-bottom: 16px; }
+        .subtitle { font-size: 15px; color: var(--text-light); margin-bottom: 40px; }
+        .pub-list { border: 1px solid var(--border); }
+        .pub-item { display: grid; grid-template-columns: 60px 100px 1fr auto; gap: 20px; align-items: start; padding: 20px; border-bottom: 1px solid var(--border); }
+        .pub-item:last-child { border-bottom: none; }
+        .pub-item:hover { background: var(--bg-secondary); }
+        .pub-year { font-size: 12px; color: var(--text-light); font-weight: 500; }
+        .pub-id { font-size: 11px; color: var(--text-lighter); font-weight: 600; }
+        .pub-body { display: flex; flex-direction: column; gap: 6px; }
+        .pub-title { font-size: 15px; font-weight: 600; color: var(--text); }
+        .pub-venue { font-size: 13px; color: var(--text-light); }
+        .pub-status { font-size: 10px; padding: 4px 12px; border: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; font-weight: 600; }
+        .pub-status.draft { border-color: #ff8c00; color: #ff8c00; }
+        .pub-status.published { border-color: #00a86b; color: #00a86b; }
+        footer { border-top: 1px solid var(--border); padding-top: 32px; margin-top: 60px; font-size: 12px; color: var(--text-light); display: flex; justify-content: space-between; }
+        .f-left { line-height: 1.8; }
+        .f-right { text-align: right; line-height: 1.8; }
+        @media (max-width: 768px) {
+            .nav-inner { flex-direction: column; gap: 16px; }
+            .nav-links { width: 100%; justify-content: center; gap: 16px; }
+            .pub-item { grid-template-columns: 1fr; gap: 12px; }
+            h1 { font-size: 28px; }
+            footer { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
 </head>
 <body>
-<nav>
-  <div class="nav-brand">
-    <a href="index.html" class="nav-logo">Front Range RF</a>
-    <span class="nav-call">AF0FO</span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="research.html">Research</a></li>
-    <li><a href="publications.html" class="active">Publications</a></li>
-    <li><a href="projects.html">Personal Projects</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
-<div class="page">
-  <div class="page-hdr">
-    <div class="page-eyebrow">Front Range RF Research Initiative</div>
-    <div class="page-title">Publications</div>
-    <div class="page-rule"></div>
-    <p class="page-desc">FRRRI technical reports. Full reports pending final figures and reviewer sign-off. MATLAB source code available on GitHub under CC BY 4.0.</p>
-  </div>
-
-  <div class="section">
-    <div class="shdr"><span class="sn">01</span><div class="sr"></div><span class="stag">In Preparation</span></div>
-    <div class="stitle">Pending Submission</div>
-    <div class="publist">
-      <div class="pub prep">
-        <div class="pub-top">
-          <div>
-            <div class="pub-meta"><span class="pub-yr">2026</span><span class="pub-id">FR-2026-05</span></div>
-            <div class="pub-title">Co-siting Analysis of a Dual-Band ADS-B Receive Station: Elevation Pattern Modeling and Antenna Placement Optimization for a Front Range Terrain Propagation Platform</div>
-            <div class="pub-authors">Smith, M. (AF0FO)</div>
-            <div class="pub-venue">FRRRI Technical Report FR-2026-05 -- In preparation for ARRL QEX</div>
-          </div>
-          <span class="pub-badge prep">In Prep</span>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Front Range RF <span>AF0FO</span></a>
+            <ul class="nav-links">
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html" class="active">Publications</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </div>
-        <p class="pub-abs">Full analytical co-siting study for the dual-band ADS-B station. Elevation radiation patterns derived from Maxwell's equations via the far-field monopole integral, extended to the collinear case using the pattern multiplication theorem and array factor. The FlightAware collinear's internal construction was reverse-engineered from the published 28 degree HPBW specification, yielding N=4 half-wave elements and 6.4 dBi modeled gain. FM broadcast band identified as the binding isolation constraint at 2.3 to 2.5m for 20 dB. Includes model limitations, full SI units, and NanoVNA validation plan. Pending final figures and sign-off from Dr. Paul Wilkinson (SIEEE) and Dr. Steve Chastain (MSEE).</p>
-        <div class="pub-links">
-          <span class="coming-soon">Report -- Coming Soon</span>
-          <a href="https://github.com/Mryan-eng/frrri-matlab" target="_blank" class="pub-link">MATLAB Code on GitHub -></a>
+    </nav>
+
+    <div class="container">
+        <h1>Publications</h1>
+        <p class="subtitle">Technical reports, peer-reviewed submissions, and research documentation.</p>
+
+        <div class="pub-list">
+            <div class="pub-item">
+                <div class="pub-year">2026</div>
+                <div class="pub-id">FR-2026-05</div>
+                <div class="pub-body">
+                    <div class="pub-title">Co-Siting Analysis of a Dual-Band ADS-B Receive Station</div>
+                    <div class="pub-venue">ARRL QEX Magazine</div>
+                </div>
+                <div class="pub-status draft">In Prep</div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-year">2026</div>
+                <div class="pub-id">FR-2026-01</div>
+                <div class="pub-body">
+                    <div class="pub-title">Terrestrial Analog Modeling of VHF Propagation Across the Rampart Range</div>
+                    <div class="pub-venue">FRRRI Technical Report</div>
+                </div>
+                <div class="pub-status published">Published</div>
+            </div>
         </div>
-      </div>
+
+        <h2 style="margin-top: 40px; font-size: 18px;">In Preparation</h2>
+        <p style="color: var(--text-light); margin-top: 12px;">
+            QST article on characterizing the local RF environment using commodity smartphone hardware. Demonstrates practical signal measurement techniques for amateur radio operators.
+        </p>
+
+        <footer>
+            <div class="f-left">
+                Front Range RF Research Initiative<br>
+                AF0FO — Colorado Springs, CO
+            </div>
+            <div class="f-right">
+                <a href="mailto:contact@frontrangerf.org" style="color: inherit;">contact@frontrangerf.org</a>
+            </div>
+        </footer>
     </div>
-  </div>
-
-  <div class="section">
-    <div class="shdr"><span class="sn">02</span><div class="sr"></div><span class="stag">Published</span></div>
-    <div class="stitle">Published Reports</div>
-    <div class="publist">
-      <div class="pub done">
-        <div class="pub-top">
-          <div>
-            <div class="pub-meta"><span class="pub-yr">2026</span><span class="pub-id">FR-2026-01</span></div>
-            <div class="pub-title">Terrestrial Analog Modeling of VHF Propagation: A Comparative Analysis of the Austin Bluffs and Martian Surface Environments</div>
-            <div class="pub-authors">Smith, M. (AF0FO)</div>
-            <div class="pub-venue">FRRRI Technical Report FR-2026-01 -- Reviewed by Dr. Paul Wilkinson, SIEEE -- Pikes Peak Radio Amateur Association</div>
-          </div>
-          <span class="pub-badge done">Published</span>
-        </div>
-        <p class="pub-abs">Qualitative VHF propagation study using the Rampart Range as a terrestrial analog for Martian terrain. MATLAB link-budget simulation comparing terrestrial and Martian propagation using the Friis transmission equation, showing a 60.2% range collapse on the Martian surface due to the absence of atmospheric refraction. Also documented as the 88-Mile Challenge: VHF signal persistence across an 88.33-mile obstructed path from Lookout Mountain, Denver to Pikes Peak International Raceway. Inaugural FRRRI study. Pending final PDF publication.</p>
-        <div class="pub-links">
-          <span class="coming-soon">Full Report -- Coming Soon</span>
-          <a href="https://github.com/Mryan-eng/frrri-matlab" target="_blank" class="pub-link">MATLAB Code on GitHub -></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="matlab-note">
-    <span class="mn-icon">// MATLAB</span>
-    <p class="mn-text">All MATLAB source code for FRRRI publications is hosted at <a href="https://github.com/Mryan-eng/frrri-matlab" target="_blank">github.com/Mryan-eng/frrri-matlab</a> under CC BY 4.0. Includes FRRRI_PatternAnalysis.m and ADSB_Ant_Rad.m for antenna pattern and isolation modeling.</p>
-  </div>
-</div>
-
-<footer class="footer">
-  <div class="fl">Front Range RF Research Initiative<br><span class="facc">AF0FO</span> -- Colorado Springs, CO</div>
-  <div class="fr">Est. 2025 -- All MATLAB code CC BY 4.0<br>AIAA -- IEEE -- ARRL</div>
-</footer>
 </body>
 </html>

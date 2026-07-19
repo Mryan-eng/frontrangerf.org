@@ -1,267 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research -- Front Range RF</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#000;--s1:#080d12;--s2:#0c1218;--b1:#162030;--b2:#1e2e44;--navy:#1a3c6e;--blue:#2a6cc4;--acc:#5b9cf6;--acc2:#88beff;--txt:#eef4ff;--txt2:#8aaccc;--txt3:#2e4860;--mono:'Space Mono',monospace;--cond:'Barlow Condensed',sans-serif}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:var(--cond);overflow-x:hidden;min-height:100vh}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(22,32,48,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(22,32,48,.55) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
-body::after{content:'';position:fixed;top:0;left:0;right:0;height:280px;background:linear-gradient(180deg,rgba(42,108,196,.08) 0%,transparent 100%);pointer-events:none;z-index:0}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.97);border-bottom:1px solid var(--b2);height:52px;display:flex;align-items:stretch}
-.nav-brand{display:flex;align-items:center;padding:0 0 0 40px;border-right:1px solid var(--b1)}
-.nav-logo{font-family:var(--cond);font-size:13px;font-weight:700;color:#fff;letter-spacing:.2em;text-decoration:none;text-transform:uppercase;padding-right:24px}
-.nav-call{font-family:var(--mono);font-size:10px;color:var(--acc);letter-spacing:.14em;padding:0 24px;display:flex;align-items:center;border-right:1px solid var(--b1)}
-.nav-links{display:flex;list-style:none;margin-left:auto}
-.nav-links a{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt2);text-decoration:none;letter-spacing:.18em;text-transform:uppercase;padding:0 22px;height:52px;display:flex;align-items:center;border-left:1px solid var(--b1);transition:all .15s}
-.nav-links a:hover{color:var(--acc2);background:rgba(42,108,196,.08)}
-.nav-links a.active{color:var(--acc);border-bottom:2px solid var(--acc)}
-.page{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:96px 64px 80px}
-.page-hdr{margin-bottom:56px}
-.page-eyebrow{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px}
-.page-eyebrow::before{content:'';width:32px;height:1px;background:var(--b2)}
-.page-title{font-family:var(--cond);font-size:clamp(48px,7vw,84px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.02em;line-height:.9;margin-bottom:16px}
-.page-rule{width:56px;height:3px;background:var(--blue);margin-bottom:20px}
-.page-desc{font-family:var(--mono);font-size:11px;color:var(--txt2);line-height:1.9;max-width:560px}
-.section{margin-bottom:64px}
-.shdr{display:flex;align-items:center;gap:14px;margin-bottom:8px}
-.sn{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.14em}
-.sr{flex:1;height:1px;background:var(--b2)}
-.stag{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.12em;text-transform:uppercase}
-.stitle{font-family:var(--cond);font-size:28px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.06em;margin-bottom:24px}
-.rlist{display:flex;flex-direction:column;gap:1px;background:var(--b2);border:1px solid var(--b2)}
-.rcard{background:var(--s1);padding:32px 36px;transition:background .18s;border-left:3px solid var(--b2)}
-.rcard:hover{background:var(--s2)}
-.rcard.active{border-left-color:var(--acc)}
-.rcard.draft{border-left-color:var(--navy)}
-.rcard.done{border-left-color:var(--txt3)}
-.rcard.plan{border-left-color:var(--b2)}
-.rc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:12px}
-.rc-st{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
-.rc-st.live{color:var(--acc)}
-.rc-st.amber{color:#f0a040}
-.rc-id{font-family:var(--mono);font-size:8px;color:var(--txt3);margin-bottom:8px}
-.rc-title{font-family:var(--cond);font-size:24px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.03em;line-height:1.2;margin-bottom:6px}
-.rc-freq{font-family:var(--mono);font-size:9px;color:var(--acc);margin-bottom:14px}
-.rc-desc{font-family:var(--mono);font-size:11px;color:var(--txt2);line-height:1.85;max-width:760px;margin-bottom:18px}
-.rc-tags{display:flex;flex-wrap:wrap;gap:6px}
-.rc-tag{font-family:var(--mono);font-size:8px;padding:3px 8px;border:1px solid var(--b2);color:var(--txt3);letter-spacing:.06em;text-transform:uppercase}
-.rc-badge{font-family:var(--mono);font-size:8px;padding:4px 12px;border:1px solid;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
-.rc-badge.live{border-color:var(--acc);color:var(--acc)}
-.rc-badge.draft{border-color:var(--navy);color:var(--acc2)}
-.rc-badge.done{border-color:var(--txt3);color:var(--txt3)}
-.rc-badge.plan{border-color:var(--b2);color:var(--txt3)}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;padding-top:16px;border-top:1px solid var(--b1)}
-.detail-block h4{font-family:var(--mono);font-size:8px;color:var(--txt3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
-.detail-block ul{list-style:none;display:flex;flex-direction:column;gap:5px}
-.detail-block ul li{font-family:var(--mono);font-size:10px;color:var(--txt2);display:flex;gap:10px}
-.detail-block ul li::before{content:'--';color:var(--txt3);flex-shrink:0}
-.footer{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:22px 64px;border-top:1px solid var(--b2);display:flex;justify-content:space-between;align-items:center}
-.fl{font-family:var(--cond);font-size:11px;font-weight:600;color:var(--txt3);letter-spacing:.14em;text-transform:uppercase;line-height:1.8}
-.fr{font-family:var(--mono);font-size:9px;color:var(--txt3);text-align:right;line-height:1.8}
-.facc{color:var(--acc)}
-@media(max-width:960px){.nav-brand{padding:0 0 0 16px}.nav-links a{padding:0 12px;font-size:10px}.page{padding:80px 20px 60px}.detail-grid{grid-template-columns:1fr}.rc-top{flex-direction:column}.footer{padding:20px;flex-direction:column;gap:10px;text-align:center}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Front Range RF</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --text: #1a1a1a; --text-light: #666; --text-lighter: #999; --border: #ddd; --bg: #fff; --bg-secondary: #f9f9f9; color-scheme: light; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        nav { border-bottom: 1px solid var(--border); padding: 20px 0; margin-bottom: 40px; }
+        .nav-inner { max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-size: 16px; font-weight: 600; color: var(--text); text-decoration: none; }
+        .nav-brand span { font-size: 12px; color: var(--text-light); margin-left: 12px; }
+        .nav-links { display: flex; gap: 24px; list-style: none; }
+        .nav-links a { font-size: 13px; color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active { color: var(--text); font-weight: 600; }
+        h1 { font-size: 36px; font-weight: 600; margin-bottom: 16px; }
+        .subtitle { font-size: 15px; color: var(--text-light); margin-bottom: 40px; }
+        .section { margin-bottom: 60px; }
+        .section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .section-num { font-size: 11px; color: var(--text-lighter); font-weight: 600; min-width: 20px; }
+        h2 { font-size: 22px; font-weight: 600; color: var(--text); }
+        .section-line { flex: 1; height: 1px; background: var(--border); }
+        .project { border: 1px solid var(--border); padding: 28px; margin-bottom: 20px; background: var(--bg-secondary); }
+        .project:hover { background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .proj-status { font-size: 10px; color: var(--text-lighter); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; font-weight: 600; }
+        .proj-status.active { color: #00a86b; }
+        .proj-status.draft { color: #ff8c00; }
+        .proj-id { font-size: 11px; color: var(--text-lighter); margin-bottom: 8px; }
+        .proj-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+        .proj-subtitle { font-size: 13px; color: var(--text-light); margin-bottom: 12px; }
+        .proj-desc { font-size: 14px; color: var(--text-light); line-height: 1.7; margin-bottom: 16px; }
+        .proj-meta { font-size: 12px; color: var(--text-lighter); }
+        footer { border-top: 1px solid var(--border); padding-top: 32px; margin-top: 60px; font-size: 12px; color: var(--text-light); display: flex; justify-content: space-between; }
+        .f-left { line-height: 1.8; }
+        .f-right { text-align: right; line-height: 1.8; }
+        @media (max-width: 768px) {
+            .nav-inner { flex-direction: column; gap: 16px; }
+            .nav-links { width: 100%; justify-content: center; gap: 16px; }
+            h1 { font-size: 28px; }
+            footer { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
 </head>
 <body>
-<nav>
-  <div class="nav-brand">
-    <a href="index.html" class="nav-logo">Front Range RF</a>
-    <span class="nav-call">AF0FO</span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="research.html" class="active">Research</a></li>
-    <li><a href="publications.html">Publications</a></li>
-    <li><a href="projects.html">Personal Projects</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
-<div class="page">
-  <div class="page-hdr">
-    <div class="page-eyebrow">Front Range RF Research Initiative</div>
-    <div class="page-title">Research</div>
-    <div class="page-rule"></div>
-    <p class="page-desc">Formal FRRRI research projects -- field studies, analytical modeling, and station development. All work is open and documented.</p>
-  </div>
-
-  <div class="section">
-    <div class="shdr"><span class="sn">01</span><div class="sr"></div><span class="stag">Active</span></div>
-    <div class="stitle">Current Work</div>
-    <div class="rlist">
-
-      <div class="rcard active">
-        <div class="rc-top">
-          <div>
-            <div class="rc-st live">Active -- Installation Summer 2026</div>
-            <div class="rc-id">FRRRI-STATION-001</div>
-            <div class="rc-title">Dual-Band ADS-B Permanent Receive Station</div>
-            <div class="rc-freq">978 / 1090 MHz -- South of Fountain, CO</div>
-          </div>
-          <span class="rc-badge live">Active</span>
-        </div>
-        <p class="rc-desc">Two-antenna permanent ADS-B receive station on a metal garage roof. Primary mission: long-term ADS-B coverage data collection to study terrain-influenced propagation asymmetry caused by the Front Range mountains. Flat open prairie to the east provides near-textbook free-space propagation. The Front Range and Pikes Peak to the west create a hard terrain horizon at roughly 2 to 3 degrees elevation. The natural asymmetry is what makes the site scientifically valuable. Research question: how accurately does the Irregular Terrain Model predict where the deviation occurs?</p>
-        <div class="detail-grid">
-          <div class="detail-block">
-            <h4>Hardware</h4>
-            <ul>
-              <li>FlightAware dual-band collinear, 978/1090 MHz, 6 dBi</li>
-              <li>Tram Model 1411 discone, 25 to 1300 MHz</li>
-              <li>SAWbird+ LNA, Raspberry Pi 4 8GB</li>
-              <li>RTL-SDR V3, dump1090-fa, PiAware</li>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Front Range RF <span>AF0FO</span></a>
+            <ul class="nav-links">
+                <li><a href="research.html" class="active">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-          </div>
-          <div class="detail-block">
-            <h4>Software Stack</h4>
-            <ul>
-              <li>dump1090-fa -- ADS-B decode, port 8080</li>
-              <li>OpenWebRX -- general SDR, port 8073</li>
-              <li>Tailscale -- remote access</li>
-              <li>Daily JSON archive to /data/adsb/</li>
-            </ul>
-          </div>
         </div>
-        <div class="rc-tags" style="margin-top:16px">
-          <span class="rc-tag">ADS-B</span><span class="rc-tag">1090 MHz</span><span class="rc-tag">Propagation</span><span class="rc-tag">ITM</span><span class="rc-tag">RTL-SDR</span><span class="rc-tag">Raspberry Pi</span>
-        </div>
-      </div>
+    </nav>
 
-      <div class="rcard draft">
-        <div class="rc-top">
-          <div>
-            <div class="rc-st amber">Draft -- QEX Submission Pending</div>
-            <div class="rc-id">FR-2026-05</div>
-            <div class="rc-title">Co-siting Analysis of a Dual-Band ADS-B Receive Station</div>
-            <div class="rc-freq">Maxwell to Helmholtz to Far-Field Integral to E(phi) pattern formula</div>
-          </div>
-          <span class="rc-badge draft">Draft</span>
-        </div>
-        <p class="rc-desc">Full analytical co-siting study for the dual-band ADS-B station. Elevation radiation patterns derived from Maxwell's equations via the far-field monopole integral, extended to the collinear case using the pattern multiplication theorem and array factor. The FlightAware collinear's internal construction was reverse-engineered from the published 28 degree HPBW specification, yielding N=4 half-wave elements and 6.4 dBi modeled gain. FM broadcast band identified as the binding isolation constraint, requiring 2.3 to 2.5m for 20 dB. Pending final figures and sign-off from Dr. Paul Wilkinson (SIEEE) and Dr. Steve Chastain (MSEE).</p>
-        <div class="detail-grid">
-          <div class="detail-block">
-            <h4>Derivation Chain</h4>
-            <ul>
-              <li>Maxwell's equations in free space</li>
-              <li>Wave equation to Helmholtz equation</li>
-              <li>Boundary conditions to standing-wave current I(z)</li>
-              <li>Far-field integral to E(phi) pattern formula</li>
-              <li>Array factor and pattern multiplication theorem</li>
-            </ul>
-          </div>
-          <div class="detail-block">
-            <h4>Key Findings</h4>
-            <ul>
-              <li>FlightAware collinear is N=4 half-wave elements</li>
-              <li>FM band is the binding isolation constraint</li>
-              <li>2.3 to 2.5m separation for 20 dB at FM</li>
-              <li>Metal roof exceeds lambda/4 at all frequencies 50 to 1090 MHz</li>
-              <li>Incidental quasi-NVIS from pitched roof geometry</li>
-            </ul>
-          </div>
-        </div>
-        <div class="rc-tags" style="margin-top:16px">
-          <span class="rc-tag">Maxwell</span><span class="rc-tag">Far-Field</span><span class="rc-tag">Array Factor</span><span class="rc-tag">MATLAB</span><span class="rc-tag">Isolation</span><span class="rc-tag">Co-siting</span>
-        </div>
-      </div>
+    <div class="container">
+        <h1>Research</h1>
+        <p class="subtitle">Active studies and field investigations in RF propagation and antenna systems.</p>
 
+        <div class="section">
+            <div class="section-head">
+                <div class="section-num">01</div>
+                <h2>Active</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="project">
+                <div class="proj-status active">Active — Summer 2026</div>
+                <div class="proj-id">FRRRI-STATION-001</div>
+                <div class="proj-title">Dual-Band ADS-B Receive Station</div>
+                <div class="proj-subtitle">978 / 1090 MHz — Permanent Installation</div>
+                <div class="proj-desc">
+                    Permanent two-antenna receive station on metal garage roof south of Fountain, CO. Continuous long-term ADS-B coverage data collection to study Front Range terrain propagation asymmetry. This installation provides empirical data on how mountainous terrain affects signal coverage at aviation frequencies.
+                </div>
+                <div class="proj-meta">Location: Fountain, CO | Frequencies: 978 MHz / 1090 MHz | Status: Operational</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-head">
+                <div class="section-num">02</div>
+                <h2>In Progress</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="project">
+                <div class="proj-status draft">Draft — QEX Pending</div>
+                <div class="proj-id">FR-2026-05</div>
+                <div class="proj-title">Co-Siting Analysis of a Dual-Band ADS-B Receive Station</div>
+                <div class="proj-subtitle">Maxwell to Far-Field Integral Equations</div>
+                <div class="proj-desc">
+                    Analytical co-siting study deriving elevation patterns from Maxwell's equations. FlightAware collinear antenna reverse-engineered as N=4 element array. FM broadcast band identified as binding isolation constraint. Extended with HFSS full-wave cross-validation for submission to ARRL QEX magazine.
+                </div>
+                <div class="proj-meta">Approach: Analytical + HFSS FDTD | Target: ARRL QEX | Expected: Q4 2026</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-head">
+                <div class="section-num">03</div>
+                <h2>Completed</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="project">
+                <div class="proj-status">Complete</div>
+                <div class="proj-id">FR-2026-01</div>
+                <div class="proj-title">Terrestrial Analog Modeling of VHF Propagation</div>
+                <div class="proj-subtitle">88.33 Miles — The 88-Mile Challenge</div>
+                <div class="proj-desc">
+                    Inaugural FRRRI field study. Lookout Mountain to Pikes Peak International Raceway across 7,000–9,000 ft terrain obstacle. Path loss exceeding 110 dB at 99.5 MHz. Demonstrates extreme terrain diffraction in Front Range geometry. Reviewed by Dr. Paul Wilkinson, SIEEE.
+                </div>
+                <div class="proj-meta">Distance: 88.33 miles | Frequency: 99.5 MHz | Obstacle: 7,000–9,000 ft | Published: 2026</div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="f-left">
+                Front Range RF Research Initiative<br>
+                AF0FO — Colorado Springs, CO
+            </div>
+            <div class="f-right">
+                <a href="mailto:contact@frontrangerf.org" style="color: inherit;">contact@frontrangerf.org</a>
+            </div>
+        </footer>
     </div>
-  </div>
-
-  <div class="section">
-    <div class="shdr"><span class="sn">02</span><div class="sr"></div><span class="stag">Complete</span></div>
-    <div class="stitle">Completed Studies</div>
-    <div class="rlist">
-
-      <div class="rcard done">
-        <div class="rc-top">
-          <div>
-            <div class="rc-st">Complete -- FR-2026-01</div>
-            <div class="rc-id">THE 88-MILE CHALLENGE</div>
-            <div class="rc-title">VHF Propagation Across the Rampart Range</div>
-            <div class="rc-freq">99.5 MHz (KQMT-FM) -- Lookout Mountain to Pikes Peak Int'l Raceway -- 88.33 miles</div>
-          </div>
-          <span class="rc-badge done">Complete</span>
-        </div>
-        <p class="rc-desc">Inaugural FRRRI field study. Characterized VHF signal persistence across an 88.33-mile obstructed path with the Rampart Range (7,000 to 9,000 ft elevation) as the primary terrain obstacle. A continuous 99.5 MHz transmission from KQMT-FM was used as a stable reference source to evaluate real-world attenuation relative to theoretical free-space path loss and line-of-sight assumptions. The analysis considered geometric path obstruction, diffraction effects over mountainous terrain, and summed theoretical path loss exceeding 110 dB. Field observations demonstrated that directional antenna gain and receiver system optimization materially influenced signal recoverability. Qualitative study -- the exploratory foundation for FRRRI's quantitative work. Reviewed by Dr. Paul Wilkinson, SIEEE, in association with the Pikes Peak Radio Amateur Association.</p>
-        <div class="detail-grid">
-          <div class="detail-block">
-            <h4>Equipment</h4>
-            <ul>
-              <li>Stellar Labs 30-2460 4-element FM Yagi, +6 dBi</li>
-              <li>RTL-SDR V4 as RF spectrum receiver</li>
-              <li>RTL LNA in series with feedline</li>
-              <li>5V DC via built-in bias tee</li>
-              <li>GQRX SDR software, low-loss RG-6 coax</li>
-            </ul>
-          </div>
-          <div class="detail-block">
-            <h4>Methodology</h4>
-            <ul>
-              <li>Midday observations -- controlled for time of day</li>
-              <li>Clear day conditions -- normal atmospheric and solar</li>
-              <li>GIS terrain analysis for path geometry</li>
-              <li>Free-space path loss as theoretical baseline</li>
-              <li>Qualitative signal recoverability assessment</li>
-            </ul>
-          </div>
-        </div>
-        <div class="rc-tags" style="margin-top:16px">
-          <span class="rc-tag">VHF</span><span class="rc-tag">99.5 MHz</span><span class="rc-tag">Terrain Propagation</span><span class="rc-tag">Yagi-Uda</span><span class="rc-tag">Diffraction</span><span class="rc-tag">PPRAA</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="shdr"><span class="sn">03</span><div class="sr"></div><span class="stag">Planned</span></div>
-    <div class="stitle">Future Work</div>
-    <div class="rlist">
-
-      <div class="rcard plan">
-        <div class="rc-top">
-          <div>
-            <div class="rc-st">Planned -- Junior Year 2026 to 2027</div>
-            <div class="rc-id">FRRRI-PROJ-005</div>
-            <div class="rc-title">Hydrogen Line Radio Telescope</div>
-            <div class="rc-freq">1420.405 MHz -- 21cm Neutral Hydrogen Emission</div>
-          </div>
-          <span class="rc-badge plan">Planned</span>
-        </div>
-        <p class="rc-desc">RTL-SDR based receiver targeting the 21cm neutral hydrogen emission line. Building on the existing ADS-B station hardware stack. Initial goal: confirmed hydrogen line detection and basic galactic structure mapping via Doppler shift analysis of hydrogen clouds along the galactic plane.</p>
-        <div class="rc-tags" style="margin-top:12px">
-          <span class="rc-tag">1420 MHz</span><span class="rc-tag">Radio Astronomy</span><span class="rc-tag">H-Line</span><span class="rc-tag">DSP</span><span class="rc-tag">Doppler</span>
-        </div>
-      </div>
-
-      <div class="rcard plan">
-        <div class="rc-top">
-          <div>
-            <div class="rc-st">Planned -- Senior Year / Mines</div>
-            <div class="rc-id">FRRRI-PROJ-006</div>
-            <div class="rc-title">Passive RF Tomography</div>
-            <div class="rc-freq">2.4 / 5 GHz -- Ambient WiFi as Passive Illuminator</div>
-          </div>
-          <span class="rc-badge plan">Planned</span>
-        </div>
-        <p class="rc-desc">Using ambient WiFi signals as passive illuminators to reconstruct spatial occupancy through signal perturbation analysis. Builds on propagation physics and DSP foundations developed through FRRRI. Research direction toward computational RF reconstruction and through-wall sensing without dedicated transmitters.</p>
-        <div class="rc-tags" style="margin-top:12px">
-          <span class="rc-tag">RF Tomography</span><span class="rc-tag">Passive Sensing</span><span class="rc-tag">WiFi</span><span class="rc-tag">DSP</span><span class="rc-tag">Reconstruction</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<footer class="footer">
-  <div class="fl">Front Range RF Research Initiative<br><span class="facc">AF0FO</span> -- Colorado Springs, CO</div>
-  <div class="fr">Est. 2025 -- All MATLAB code CC BY 4.0<br>AIAA -- IEEE -- ARRL</div>
-</footer>
 </body>
 </html>
