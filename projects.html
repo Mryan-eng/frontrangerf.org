@@ -53,6 +53,7 @@
         <h1>Personal Projects</h1>
         <p class="subtitle">Hardware builds, infrastructure, and RF experiments.</p>
 
+        <div id="projList">
         <div class="project">
             <div class="proj-title">ADS-B Receive Stations</div>
             <div class="proj-desc">
@@ -85,6 +86,8 @@
             <div class="proj-meta">Mission: UCCS DemoSat | Launch: August 2026 | Range: 350+ km | Funding: NASA/COSGC</div>
         </div>
 
+        </div>
+
         <footer>
             <div class="f-left">
                 Front Range RF Research Initiative<br>
@@ -95,5 +98,20 @@
             </div>
         </footer>
     </div>
+
+    <script>
+    // Renders projects from content.json. Edit content.json to update.
+    fetch('content.json')
+        .then(function(r) { return r.json(); })
+        .then(function(c) {
+            document.getElementById('projList').innerHTML = c.projects.map(function(p) {
+                return '<div class="project">' +
+                    '<div class="proj-title">' + p.title + '</div>' +
+                    '<div class="proj-desc">' + p.description + '</div>' +
+                    '<div class="proj-meta">' + p.meta + '</div></div>';
+            }).join('');
+        })
+        .catch(function() { /* keep static fallback */ });
+    </script>
 </body>
 </html>

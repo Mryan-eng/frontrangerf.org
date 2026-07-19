@@ -61,7 +61,7 @@
         <h1>Publications</h1>
         <p class="subtitle">Technical reports, peer-reviewed submissions, and research documentation.</p>
 
-        <div class="pub-list">
+        <div class="pub-list" id="pubList">
             <div class="pub-item">
                 <div class="pub-year">2026</div>
                 <div class="pub-id">FR-2026-05</div>
@@ -98,5 +98,22 @@
             </div>
         </footer>
     </div>
+
+    <script>
+    // Renders publications from content.json. Edit content.json to update.
+    fetch('content.json')
+        .then(function(r) { return r.json(); })
+        .then(function(c) {
+            document.getElementById('pubList').innerHTML = c.publications.map(function(p) {
+                return '<div class="pub-item">' +
+                    '<div class="pub-year">' + p.year + '</div>' +
+                    '<div class="pub-id">' + p.id + '</div>' +
+                    '<div class="pub-body"><div class="pub-title">' + p.title + '</div>' +
+                    '<div class="pub-venue">' + p.venue + '</div></div>' +
+                    '<div class="pub-status ' + p.statusClass + '">' + p.status + '</div></div>';
+            }).join('');
+        })
+        .catch(function() { /* keep static fallback */ });
+    </script>
 </body>
 </html>

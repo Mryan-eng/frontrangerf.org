@@ -1,0 +1,85 @@
+{
+  "tagline": "RF measurement, modeling, and documentation of terrain propagation phenomena in Colorado.",
+
+  "stats": [
+    { "label": "Callsign", "value": "AF0FO" },
+    { "label": "License", "value": "FCC Amateur Extra" },
+    { "label": "Founded", "value": "2025" },
+    { "label": "Location", "value": "Colorado Springs" }
+  ],
+
+  "research": [
+    {
+      "status": "Active — Summer 2026",
+      "statusClass": "active",
+      "id": "FRRRI-STATION-001",
+      "title": "Dual-Band ADS-B Receive Station",
+      "subtitle": "978 / 1090 MHz — Permanent Installation",
+      "summary": "Permanent two-antenna receive station on metal garage roof south of Fountain, CO. Long-term ADS-B coverage data to study Front Range terrain propagation asymmetry.",
+      "description": "Permanent two-antenna receive station on metal garage roof south of Fountain, CO. Continuous long-term ADS-B coverage data collection to study Front Range terrain propagation asymmetry. This installation provides empirical data on how mountainous terrain affects signal coverage at aviation frequencies.",
+      "meta": "Location: Fountain, CO | Frequencies: 978 MHz / 1090 MHz | Status: Operational"
+    },
+    {
+      "status": "Draft — QEX Pending",
+      "statusClass": "draft",
+      "id": "FR-2026-05",
+      "title": "Co-Siting Analysis of a Dual-Band ADS-B Receive Station",
+      "subtitle": "Maxwell to Far-Field Integral Equations",
+      "summary": "Analytical co-siting study. Elevation patterns from Maxwell's equations. FlightAware collinear reverse-engineered as N=4 elements. FM band is binding isolation constraint.",
+      "description": "Analytical co-siting study deriving elevation patterns from Maxwell's equations. FlightAware collinear antenna reverse-engineered as N=4 element array. FM broadcast band identified as binding isolation constraint. Extended with HFSS full-wave cross-validation for submission to ARRL QEX magazine.",
+      "meta": "Approach: Analytical + HFSS FDTD | Target: ARRL QEX | Expected: Q4 2026"
+    },
+    {
+      "status": "Complete",
+      "statusClass": "done",
+      "id": "FR-2026-01",
+      "title": "Terrestrial Analog Modeling of VHF Propagation",
+      "subtitle": "88.33 Miles — The 88-Mile Challenge",
+      "summary": "Inaugural FRRRI field study across Rampart Range terrain obstacle (7,000–9,000 ft). Path loss exceeding 110 dB. Reviewed by Dr. Paul Wilkinson, SIEEE.",
+      "description": "Inaugural FRRRI field study. Lookout Mountain to Pikes Peak International Raceway across 7,000–9,000 ft terrain obstacle. Path loss exceeding 110 dB at 99.5 MHz. Demonstrates extreme terrain diffraction in Front Range geometry. Reviewed by Dr. Paul Wilkinson, SIEEE.",
+      "meta": "Distance: 88.33 miles | Frequency: 99.5 MHz | Obstacle: 7,000–9,000 ft | Published: 2026"
+    }
+  ],
+
+  "publications": [
+    {
+      "year": "2026",
+      "id": "FR-2026-05",
+      "title": "Co-Siting Analysis of a Dual-Band ADS-B Receive Station",
+      "venue": "ARRL QEX (in preparation)",
+      "status": "In Prep",
+      "statusClass": "draft"
+    },
+    {
+      "year": "2026",
+      "id": "FR-2026-01",
+      "title": "Terrestrial Analog Modeling of VHF Propagation",
+      "venue": "FRRRI Technical Report",
+      "status": "Published",
+      "statusClass": "published"
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "ADS-B Receive Stations",
+      "description": "Designed and deployed multiple ADS-B receive stations for aviation surveillance. Includes antenna design, RF isolation analysis, and long-term coverage monitoring. Data used in co-siting research and published technical reports.",
+      "meta": "Equipment: USRP, LNA, collinear arrays | Status: Operational"
+    },
+    {
+      "title": "DMR Hotspot (Pi-Star/MMDVM)",
+      "description": "Built and configured personal DMR hotspot on Raspberry Pi running Pi-Star with MMDVM hardware. Debugged WiFi link budget, session keepalive, and network connectivity issues. Registered on BrandMeister network.",
+      "meta": "Platform: Raspberry Pi + MMDVM | Network: BrandMeister | Status: Operational"
+    },
+    {
+      "title": "Deep Space Exploration Society — 18M Dish",
+      "description": "Hands-on work on the 18-meter research dish at Haswell. Feed swaps between 408 MHz pulsar observation and 1420 MHz hydrogen line receive chains. Maintenance and stow operations.",
+      "meta": "Antenna: 18-meter parabolic | Bands: 408 MHz / 1420 MHz | Role: Operator"
+    },
+    {
+      "title": "UCCS DemoSat — VHF Recovery Link",
+      "description": "RF/Communications Lead for NASA-funded COSGC high-altitude balloon mission. Designed and validated VHF APRS recovery link. Full link budget analysis, SNR/PER calculations, antenna modeling. Validated 350+ km operational range.",
+      "meta": "Mission: UCCS DemoSat | Launch: August 2026 | Range: 350+ km | Funding: NASA/COSGC"
+    }
+  ]
+}

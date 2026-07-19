@@ -63,6 +63,7 @@
         <h1>Research</h1>
         <p class="subtitle">Active studies and field investigations in RF propagation and antenna systems.</p>
 
+        <div id="researchSections">
         <div class="section">
             <div class="section-head">
                 <div class="section-num">01</div>
@@ -120,6 +121,8 @@
             </div>
         </div>
 
+        </div>
+
         <footer>
             <div class="f-left">
                 Front Range RF Research Initiative<br>
@@ -130,5 +133,32 @@
             </div>
         </footer>
     </div>
+
+    <script>
+    // Renders research projects from content.json. Edit content.json to update.
+    fetch('content.json')
+        .then(function(r) { return r.json(); })
+        .then(function(c) {
+            var groups = [['active', '01', 'Active'], ['draft', '02', 'In Progress'], ['done', '03', 'Completed']];
+            var html = '';
+            groups.forEach(function(g) {
+                var items = c.research.filter(function(r) { return r.statusClass === g[0]; });
+                if (!items.length) return;
+                html += '<div class="section"><div class="section-head"><div class="section-num">' + g[1] + '</div><h2>' + g[2] + '</h2><div class="section-line"></div></div>';
+                html += items.map(function(r) {
+                    return '<div class="project">' +
+                        '<div class="proj-status ' + r.statusClass + '">' + r.status + '</div>' +
+                        '<div class="proj-id">' + r.id + '</div>' +
+                        '<div class="proj-title">' + r.title + '</div>' +
+                        '<div class="proj-subtitle">' + r.subtitle + '</div>' +
+                        '<div class="proj-desc">' + r.description + '</div>' +
+                        '<div class="proj-meta">' + r.meta + '</div></div>';
+                }).join('');
+                html += '</div>';
+            });
+            document.getElementById('researchSections').innerHTML = html;
+        })
+        .catch(function() { /* keep static fallback */ });
+    </script>
 </body>
 </html>

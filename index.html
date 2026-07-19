@@ -457,9 +457,9 @@
     <div class="container">
         <div class="header">
             <h1>Front Range RF Research Initiative</h1>
-            <p class="tagline">RF measurement, modeling, and documentation of terrain propagation phenomena in Colorado.</p>
+            <p class="tagline" id="tagline">RF measurement, modeling, and documentation of terrain propagation phenomena in Colorado.</p>
 
-            <div class="meta">
+            <div class="meta" id="stats">
                 <div class="meta-item">
                     <div class="meta-label">Callsign</div>
                     <div class="meta-value">AF0FO</div>
@@ -487,7 +487,7 @@
                 <div class="section-line"></div>
             </div>
 
-            <div class="cards">
+            <div class="cards" id="researchCards">
                 <a href="research.html" class="card">
                     <div class="card-status active">Active — Summer 2026</div>
                     <div class="card-id">FRRRI-STATION-001</div>
@@ -522,7 +522,7 @@
                 <div class="section-line"></div>
             </div>
 
-            <div class="pub-list">
+            <div class="pub-list" id="pubList">
                 <a href="publications.html" class="pub-item">
                     <div class="pub-year">2026</div>
                     <div class="pub-id">FR-2026-05</div>
@@ -597,5 +597,38 @@
             </div>
         </footer>
     </div>
+
+    <script>
+    // Loads content.json and fills the page. Edit content.json to update the site.
+    // If content.json fails to load, the page keeps the text written above as fallback.
+    fetch('content.json')
+        .then(function(r) { return r.json(); })
+        .then(function(c) {
+            document.getElementById('tagline').textContent = c.tagline;
+
+            document.getElementById('stats').innerHTML = c.stats.map(function(s) {
+                return '<div class="meta-item"><div class="meta-label">' + s.label + '</div><div class="meta-value">' + s.value + '</div></div>';
+            }).join('');
+
+            document.getElementById('researchCards').innerHTML = c.research.map(function(r) {
+                return '<a href="research.html" class="card">' +
+                    '<div class="card-status ' + r.statusClass + '">' + r.status + '</div>' +
+                    '<div class="card-id">' + r.id + '</div>' +
+                    '<div class="card-title">' + r.title + '</div>' +
+                    '<div class="card-subtitle">' + r.subtitle + '</div>' +
+                    '<div class="card-desc">' + r.summary + '</div></a>';
+            }).join('');
+
+            document.getElementById('pubList').innerHTML = c.publications.map(function(p) {
+                return '<a href="publications.html" class="pub-item">' +
+                    '<div class="pub-year">' + p.year + '</div>' +
+                    '<div class="pub-id">' + p.id + '</div>' +
+                    '<div class="pub-body"><div class="pub-title">' + p.title + '</div>' +
+                    '<div class="pub-venue">' + p.venue + '</div></div>' +
+                    '<div class="pub-status ' + p.statusClass + '">' + p.status + '</div></a>';
+            }).join('');
+        })
+        .catch(function() { /* keep static fallback */ });
+    </script>
 </body>
 </html>
